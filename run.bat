@@ -167,13 +167,13 @@ set "BASE_DIR=%~dp0"
 if "%BASE_DIR:~-1%"=="\" set "BASE_DIR=%BASE_DIR:~0,-1%"
 set "PYTHON=%BASE_DIR%\python_embeded\python.exe"
 
-echo Waiting for ComfyUI (localhost:8188)...
+echo Waiting for Fanvue Hub (localhost:3000)...
 :wait_loop
 timeout /t 1 >nul
-"%PYTHON%" -c "import socket; s = socket.socket(); s.connect(('127.0.0.1', 8188))" >nul 2>&1
+"%PYTHON%" -c "import socket; s = socket.socket(); s.connect(('127.0.0.1', 3000))" >nul 2>&1
 if %errorlevel% equ 0 (
-    echo ComfyUI is up! Launching browser...
-    start "" http://127.0.0.1:8188
+    echo Fanvue Hub is up! Launching browser...
+    start "" http://localhost:3000
     exit
 )
 goto wait_loop
