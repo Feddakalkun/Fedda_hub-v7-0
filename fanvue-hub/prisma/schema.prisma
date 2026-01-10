@@ -1,0 +1,224 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./hub.db"
+}
+
+// Global App Configuration (Client ID / Secret)
+model AppConfig {
+  id              String   @id @default("global") // We only need one row with ID 'global'
+  updatedAt       DateTime @updatedAt
+  
+  // Fanvue OAuth Application Credentials
+  clientId        String?
+  clientSecret    String?
+  
+  // ComfyUI / AI Service Config
+  comfyuiUrl      String   @default("http://127.0.0.1:8188")
+  falApiKey       String?
+  geminiApiKey    String?
+  elevenLabsApiKey String?
+  
+  setupCompleted  Boolean  @default(false)
+}
+
+// Characters (Personas) - Each has its own OAuth session
+model Character {
+  id              String   @id @default(cuid())
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  slug            String   @unique // URL friendly ID (e.g. "emily", "thale", "new-girl")
+  name            String
+  handle          String?
+  bio             String?
+  avatarUrl       String?
+
+  // LoRA / Appearance
+  loraPath        String?  // Path to .safetensors file in ComfyUI/models/loras
+  qwenLoraPath    String?  // Path to Qwen specific LoRA
+  appearance      String?  // Base prompt description
+  
+  // Voice (TTS)
+  voiceProvider   String?  @default("elevenlabs") // "elevenlabs", "gemini", "browser"
+  voiceModel      String?  @default("Puck") // Gemini voice or ElevenLabs Voice ID
+  voiceDescription String? // For Gemini
+  voiceId         String?  // Specific ID for ElevenLabs (optional, can use voiceModel)
+  
+  // AI Brain
+  llmModel        String?  @default("mistral") // "mistral", "llama3", "gemini-flash"
+  systemInstruction String?  // Custom instructions / Memory for the AI
+  
+  // OAuth Session Data (Per Character)
+  accessToken     String?
+  refreshToken    String?
+  tokenExpiresAt  DateTime?
+  fanvueUserId    String?
+
+  posts           Post[]
+  generatedContent GeneratedContent[]
+  memories        CharacterMemory[]
+
+  // TikTok Connection
+  tiktokConnection TikTokConnection?
+}
+
+model TikTokConnection {
+  id                   String    @id @default(cuid())
+  characterId          String    @unique
+  character            Character @relation(fields: [characterId], references: [id], onDelete: Cascade)
+  
+  // OAuth tokens
+  accessToken          String
+  refreshToken         String
+  expiresIn            Int       // Seconds until expiry
+  expiresAt            DateTime  // When token expires
+  
+  // TikTok account info
+  tiktokUserId         String    @unique
+  tiktokUsername       String
+  tiktokDisplayName    String
+  tiktokAvatar         String?
+  
+  // Posting settings
+  autoPostEnabled      Boolean   @default(true)
+  postScheduleTime     String?   // "09:00" for 9 AM daily
+  defaultCaption       String?   // Template caption
+  
+  // Stats
+  totalPostsVia        Int       @default(0)
+  lastPostedAt         DateTime?
+  failedPostsCount     Int       @default(0)
+  
+  // Timestamps
+  connectedAt          DateTime  @default(now())
+  lastTokenRefresh     DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+  
+  // Relations
+  scheduledPosts       ScheduledPost[]
+  postMetrics          PostMetric[]
+  
+  @@index([characterId])
+}
+
+model ScheduledPost {
+  id                   String    @id @default(cuid())
+  tiktokConnectionId   String
+  tiktokConnection     TikTokConnection @relation(fields: [tiktokConnectionId], references: [id], onDelete: Cascade)
+  
+  // Content
+  imageUrl             String
+  caption              String
+  hashtags             String    // "#gamer #fitness #onlyfans"
+  
+  // Scheduling
+  scheduledFor         DateTime
+  status               String    @default("pending") // pending, posted, failed, cancelled
+  postedAt             DateTime?
+  errorMessage         String?
+  
+  // TikTok response
+  tiktokVideoId        String?
+  tiktokShareUrl       String?
+  
+  // Metadata
+  templateUsed         String?   // "gaming-girl-1"
+  sourceCharacter      String?   // "emily"
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+  
+  @@index([tiktokConnectionId])
+  @@index([scheduledFor])
+  @@index([status])
+}
+
+model PostMetric {
+  id                   String    @id @default(cuid())
+  tiktokConnectionId   String
+  tiktokConnection     TikTokConnection @relation(fields: [tiktokConnectionId], references: [id], onDelete: Cascade)
+  
+  // TikTok video data
+  videoId              String
+  views                Int       @default(0)
+  likes                Int       @default(0)
+  comments             Int       @default(0)
+  shares               Int       @default(0)
+  
+  // Conversion tracking
+  clicksToFanvue       Int       @default(0)
+  clicksToProfile      Int       @default(0)
+  
+  // Timestamps
+  fetchedAt            DateTime  @default(now())
+  
+  @@unique([tiktokConnectionId, videoId])
+  @@index([tiktokConnectionId])
+}
+
+model Post {
+  id              String   @id @default(cuid())
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  characterId     String
+  character       Character @relation(fields: [characterId], references: [id], onDelete: Cascade)
+
+  caption         String?
+  
+  // Media (JSON array of {url, type, localPath})
+  mediaUrls       String? // Stored as JSON string
+  
+  // Fanvue Status
+  status          String   @default("draft") // draft, scheduled, posted, failed
+  fanvuePostId    String?
+  publishedAt     DateTime?
+  errorMessage    String?
+}
+
+model GeneratedContent {
+  id              String   @id @default(cuid())
+  createdAt       DateTime @default(now())
+
+  characterId     String
+  character       Character @relation(fields: [characterId], references: [id], onDelete: Cascade)
+  
+  prompt          String
+  imageUrl        String
+  localPath       String?
+  
+  mood            String?
+  isFavorite      Boolean  @default(false)
+}
+
+model CharacterMemory {
+  id              String   @id @default(cuid())
+  characterId     String
+  character       Character @relation(fields: [characterId], references: [id], onDelete: Cascade)
+  
+  userId          String   // External User ID (Phone number, etc)
+  sessionId       String?
+  
+  memoryType      String?  // name, interest, etc
+  memoryContent   String
+  memoryStrength  Int      @default(100)
+  
+  mentionedCount  Int      @default(1)
+  lastMentionedAt DateTime?
+  firstLearnedAt  DateTime @default(now())
+  originalMessage String?
+  contextRelevance Float?
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@index([characterId, userId])
+  @@index([memoryType])
+  @@map("character_memories")
+}

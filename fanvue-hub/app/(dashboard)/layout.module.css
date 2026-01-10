@@ -1,0 +1,54 @@
+.dashboard {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    padding: 40px 24px 24px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.headerContent {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.title {
+    font-size: 36px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+}
+
+.subtitle {
+    font-size: 16px;
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+.main {
+    flex: 1;
+    padding: 24px 32px;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 24px 16px 16px;
+    }
+
+    .title {
+        font-size: 28px;
+    }
+
+    .subtitle {
+        font-size: 14px;
+    }
+
+    .main {
+        padding: 24px 0;
+    }
+}

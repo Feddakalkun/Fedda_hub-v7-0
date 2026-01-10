@@ -1,0 +1,22 @@
+# === SYSTEM BINARIES (Do NOT track) ===
+python_embeded/
+git_embeded/
+node_embeded/
+ollama_embeded/
+
+# === AI SUITES (Do NOT track) ===
+ComfyUI/
+VoxCPM/
+
+# === APP ARTIFACTS ===
+fanvue-hub/node_modules/
+fanvue-hub/.next/
+fanvue-hub/.env.local
+fanvue-hub/prisma/dev.db
+fanvue-hub/prisma/dev.db-journal
+
+# === LOGS & TEMP ===
+logs/
+tmp/
+.DS_Store
+*.log

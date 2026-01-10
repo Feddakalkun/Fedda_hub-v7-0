@@ -1,0 +1,53 @@
+{
+  "name": "fanvue-hub",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "sync": "node comfyui-sync.js",
+    "postinstall": "prisma generate && prisma db push"
+  },
+  "dependencies": {
+    "@fal-ai/client": "^1.8.0",
+    "@google/generative-ai": "^0.24.1",
+    "@gradio/client": "^2.0.1",
+    "@prisma/client": "^6.19.1",
+    "@types/form-data": "^2.2.1",
+    "axios": "^1.13.2",
+    "bcryptjs": "^3.0.3",
+    "chokidar": "^5.0.0",
+    "crypto-js": "^4.2.0",
+    "date-fns": "^4.1.0",
+    "form-data": "^4.0.5",
+    "framer-motion": "^12.23.26",
+    "fs-extra": "^11.2.0",
+    "lucide-react": "^0.561.0",
+    "next": "16.0.10",
+    "node-fetch": "^2.7.0",
+    "prisma": "^6.19.1",
+    "react": "19.2.1",
+    "react-dom": "19.2.1",
+    "snoowrap": "^1.23.0",
+    "ws": "^8.18.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/crypto-js": "^4.2.2",
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/uuid": "^10.0.0",
+    "@types/ws": "^8.18.1",
+    "eslint": "^9",
+    "eslint-config-next": "16.0.10",
+    "local-ssl-proxy": "^2.0.5",
+    "tailwindcss": "^4",
+    "tsx": "^4.21.0",
+    "typescript": "^5"
+  }
+}

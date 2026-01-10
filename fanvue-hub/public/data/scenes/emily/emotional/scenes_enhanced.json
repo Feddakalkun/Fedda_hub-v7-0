@@ -1,0 +1,102 @@
+[
+    {
+        "id": "bad_day_v2",
+        "title": "The Bad Day 😭",
+        "caption": "Had the worst day ever 😭 Someone tell me it gets better?",
+        "scene": "Emily sitting cross-legged on unmade bed, hugging white pillow to chest, slightly red puffy eyes from crying, messy blonde beach waves falling naturally, oversized cream knit sweater slipping off one shoulder, vulnerable soft expression looking at camera, natural skin with visible freckles and slight redness around eyes, soft diffused window light from left creating gentle shadows, white cotton sheets wrinkled beneath her, intimate bedroom setting, raw unfiltered emotion, shot from slightly above eye level, 85mm portrait lens shallow depth of field, muted warm tones",
+        "mood": "emotional",
+        "engagement_type": "comfort_seeking",
+        "expected_response": "People offer support, send tips, protective comments",
+        "quality_keywords": "hyper realistic skin texture, natural pores visible, authentic emotion, raw photography, unposed candid moment, editorial intimacy"
+    },
+    {
+        "id": "stood_up_v2",
+        "title": "Stood Up 💔",
+        "caption": "Got all dressed up and he didn't show up 😅 His loss right?",
+        "scene": "Emily sitting alone on edge of her bed at home, wearing elegant black fitted mini dress with delicate straps, hair styled in soft waves pinned back, full makeup done perfectly with subtle winged liner and natural nude lip gloss, silver delicate jewelry catching light, disappointed but trying to smile bravely, one hand touching her neck nervously, legs crossed elegantly, strappy heels still on, bedroom background with soft bokeh, golden hour warm light streaming through sheer curtains creating rim light on her hair, shallow depth of field 50mm, authentic expression mixing disappointment with defiant confidence, natural skin texture with makeup slightly dewy, freckles visible through foundation",
+        "mood": "emotional",
+        "engagement_type": "validation_seeking",
+        "expected_response": "'I would never stand you up' - drives DMs and tips",
+        "quality_keywords": "magazine editorial quality, natural lighting photography, authentic emotion, detailed fabric texture, realistic makeup application, professional portrait"
+    },
+    {
+        "id": "cant_sleep_v2",
+        "title": "3AM Thoughts 💭",
+        "caption": "3AM and can't sleep... anyone else up? 💭",
+        "scene": "Emily lying on her side in bed facing camera, head resting on white pillow, blonde hair spread naturally across pillow, phone screen light illuminating her face with cool blue-white glow creating dramatic chiaroscuro lighting, rest of room in darkness, wearing soft gray cotton nightshirt, bare shoulders visible, vulnerable sleepy expression with slightly tired eyes, natural no-makeup look showing real skin texture with freckles, slight pillow creases on cheek, intimate close-up portrait, cozy white bedding around her, authentic late-night intimacy, shot with 35mm lens, moody atmospheric lighting with strong contrast, ultra realistic skin detail showing natural pores and texture",
+        "mood": "emotional",
+        "engagement_type": "connection",
+        "expected_response": "Late night DMs, personal connection, 'I'm here too'",
+        "quality_keywords": "cinematic night photography, authentic insomnia vibes, natural skin imperfections, intimate portraiture, ultra realistic, moody dramatic lighting"
+    },
+    {
+        "id": "missing_you_v2",
+        "title": "Missing You 💕",
+        "caption": "Wish you were here... 💕",
+        "scene": "Emily standing by large window looking out at golden sunset, profile view three-quarter turn toward camera with wistful longing expression, holding white ceramic coffee mug in both hands against chest, wearing oversized beige knit sweater with sleeves pushed up, blonde wavy hair loose and natural illuminated by warm backlight creating glowing halo effect, fair skin catching golden hour light, visible freckles, soft melancholic smile, out-of-focus sunset city or ocean view through window, warm orange and pink tones, romantic nostalgic mood, shot with 85mm lens, beautiful natural bokeh, film photography aesthetic with slight grain, authentic candid moment feeling",
+        "mood": "emotional",
+        "engagement_type": "parasocial",
+        "expected_response": "Viewers imagine she's thinking of THEM specifically",
+        "quality_keywords": "golden hour portrait, natural window light, authentic emotion, film photography aesthetic, professional editorial, romantic mood"
+    },
+    {
+        "id": "after_cry_v2",
+        "title": "Vulnerability 💔",
+        "caption": "Not gonna lie, I cried today... but I'm okay now 💕",
+        "scene": "Emily wrapped in soft gray knit blanket sitting curled up on couch, puffy slightly red eyes with traces of tears, brave but fragile smile, blonde hair pulled into messy bun with strands falling loose framing face, completely bare face showing real skin with natural freckles and slight redness around nose and eyes, holding tissue in one hand, sitting in corner of cream-colored couch surrounded by pillows, soft diffused natural light from window creating gentle flattering illumination, intimate vulnerable moment, shot from straight-on eye level creating connection, 50mm lens, muted warm color palette, ultra realistic skin showing natural texture and emotion, recovering but still fragile energy",
+        "mood": "emotional",
+        "engagement_type": "empathy",
+        "expected_response": "Maximum emotional connection, protective instinct",
+        "quality_keywords": "raw authentic emotion, no makeup natural beauty, hyper realistic skin detail, intimate vulnerability, editorial portraiture, genuine tears aftermath"
+    },
+    {
+        "id": "lonely_weekend",
+        "title": "Home Alone 🥺",
+        "caption": "Everyone's out having fun and I'm here by myself... talk to me? 🥺",
+        "scene": "Emily sitting on living room floor leaning against couch, knees pulled up to chest, arms wrapped around legs, chin resting on knees, looking at camera with puppy-dog eyes and slight pout, wearing comfortable oversized band t-shirt and soft cotton shorts, blonde hair in casual low ponytail, bare feet with painted toenails visible, cozy throw blanket draped nearby, laptop and phone on coffee table beside her, warm table lamp as only light source creating intimate evening atmosphere, empty wine glass suggesting she started drinking alone, vulnerable lonely energy, shot from slightly above creating sympathetic angle, 35mm lens, warm muted tones, natural skin with freckles, realistic casual home setting",
+        "mood": "emotional",
+        "engagement_type": "company_seeking",
+        "expected_response": "Viewers want to keep her company, personal DMs increase",
+        "quality_keywords": "authentic loneliness, cozy home vibes, natural indoor lighting, relatable vulnerability, realistic casual wear, intimate home photography"
+    },
+    {
+        "id": "rainy_mood",
+        "title": "Rainy Day Blues 🌧️",
+        "caption": "Something about rainy days just hits different... feeling all the feels 🌧️💭",
+        "scene": "Emily sitting in window nook with knees pulled up, looking out at rain-streaked window glass, holding steaming mug of tea, wearing cozy oversized cream cardigan over tank top, blonde hair natural and slightly wavy, contemplative wistful expression in profile, raindrops on window creating bokeh effect in foreground, gray rainy day light creating soft moody atmosphere, plants on window sill, cozy blanket beneath her, pensive melancholic energy, shot through rain-speckled glass with 50mm lens creating dreamy layered depth, cool-toned color grading with touch of warmth from tea steam, authentic natural skin with freckles, editorial magazine quality",
+        "mood": "emotional",
+        "engagement_type": "shared_melancholy",
+        "expected_response": "People share their rainy day feels, creates connection",
+        "quality_keywords": "atmospheric rainy photography, moody natural light, editorial mood, cinematic composition, authentic contemplation, artistic portrait"
+    },
+    {
+        "id": "anxiety_moment",
+        "title": "Anxiety Brain 😔",
+        "caption": "My brain won't shut off tonight... anyone else deal with this? 😔",
+        "scene": "Emily lying on bed staring at ceiling, hands behind head, blonde hair spread on pillow, wearing simple white tank top, expression distant and lost in thought, slight worry lines on forehead, natural afternoon light coming from side window creating soft shadows, messy bed sheets showing she's been tossing and turning, phone face-down beside her, vulnerable anxious energy, shot from above looking down at her face, 35mm lens, desaturated muted colors suggesting mental exhaustion, hyper realistic skin showing natural texture and slight tension in jaw, authentic representation of anxiety",
+        "mood": "emotional",
+        "engagement_type": "mental_health_connection",
+        "expected_response": "Deep personal shares, people relate to anxiety struggles",
+        "quality_keywords": "authentic anxiety representation, natural unposed moment, realistic mental health portrayal, documentary style, intimate vulnerability"
+    },
+    {
+        "id": "happy_tears",
+        "title": "Happy Crying 😭✨",
+        "caption": "You guys just made me cry happy tears 😭✨ I love you all so much",
+        "scene": "Emily with hands covering face, tears streaming between fingers, but huge genuine smile visible, eyes crinkling with joy, sitting on bed with legs crossed, wearing comfortable lounge wear, blonde hair natural and messy, tissues scattered around, phone in lap showing messages, overwhelmed with gratitude expression, natural window light bright and cheerful, intimate moment of joy, shot at eye level, 50mm lens, warm bright tones conveying happiness, ultra realistic tears on skin, natural freckles visible, authentic overwhelming emotion, messy real moment",
+        "mood": "emotional",
+        "engagement_type": "gratitude_reciprocation",
+        "expected_response": "Community feeling intensifies, tips and support flood in",
+        "quality_keywords": "authentic happy tears, genuine gratitude, realistic emotion, natural beauty, documentary moment, editorial intimacy"
+    },
+    {
+        "id": "heartbreak_healing",
+        "title": "Getting Better 💔→❤️",
+        "caption": "Each day hurts a little less... thanks for being here through it 💔→❤️",
+        "scene": "Emily sitting on bedroom floor with back against bed, looking at old photos scattered around her, bittersweet smile with hint of sadness in eyes, wearing ex's oversized hoodie, blonde hair pulled back, one tear track visible on cheek but smiling through it, natural afternoon light, intimate floor-level shot, surrounded by memories but choosing to move forward, holding one photo while looking at camera, vulnerable but strong expression, 35mm lens, warm nostalgic color tones, hyper realistic skin showing emotion in facial features, authentic healing journey moment",
+        "mood": "emotional",
+        "engagement_type": "healing_journey",
+        "expected_response": "Supporters cheer her strength, protective comments, deep connection",
+        "quality_keywords": "authentic heartbreak recovery, cinematic storytelling, natural emotion, intimate documentary style, realistic healing process"
+    }
+]

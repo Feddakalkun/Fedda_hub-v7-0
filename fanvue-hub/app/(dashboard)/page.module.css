@@ -1,0 +1,163 @@
+.dashboard {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.heroTitle {
+    font-size: 48px;
+    font-weight: 800;
+    margin-bottom: 16px;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.heroDescription {
+    font-size: 18px;
+    color: var(--text-secondary);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+.quickStart {
+    margin-bottom: 56px;
+}
+
+.sectionTitle {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--text-primary);
+}
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.stepNumber {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.stepTitle {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+}
+
+.stepDescription {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.services {
+    margin-bottom: 56px;
+}
+
+.serviceGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+}
+
+.serviceCard {
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+    transition: all var(--transition-normal);
+    cursor: pointer;
+}
+
+.serviceCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--service-color);
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.serviceCard:hover::before {
+    opacity: 1;
+}
+
+.serviceCard:hover .serviceArrow {
+    transform: translateX(4px);
+    opacity: 1;
+}
+
+.serviceIcon {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+.serviceName {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+}
+
+.serviceDescription {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+.serviceArrow {
+    position: absolute;
+    bottom: 24px;
+    right: 24px;
+    font-size: 24px;
+    color: var(--service-color);
+    opacity: 0;
+    transition: all var(--transition-fast);
+}
+
+@media (max-width: 768px) {
+    .heroTitle {
+        font-size: 32px;
+    }
+
+    .heroDescription {
+        font-size: 16px;
+    }
+
+    .serviceGrid {
+        grid-template-columns: 1fr;
+    }
+}
