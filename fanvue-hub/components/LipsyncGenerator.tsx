@@ -22,6 +22,11 @@ export default function LipsyncGenerator({
     const [resolution, setResolution] = useState('512');
     const [uploadedVoicePath, setUploadedVoicePath] = useState<string | null>(null);
     const [uploadedVoiceName, setUploadedVoiceName] = useState<string | null>(null);
+
+    // Voice Selector State
+    const [availableVoices, setAvailableVoices] = useState<{ name: string, description: string }[]>([]);
+    const [selectedPresetVoice, setSelectedPresetVoice] = useState<string>('');
+
     const [isUploading, setIsUploading] = useState(false);
     const [isGenerating, setIsGenerating] = useState(false);
 
@@ -40,6 +45,18 @@ export default function LipsyncGenerator({
             // Clear it so it doesn't auto-populate again
             localStorage.removeItem('lipsyncInputImage');
         }
+    }, []);
+
+    // Load available voices
+    useEffect(() => {
+        fetch('/api/voxcpm/voices')
+            .then(res => res.json())
+            .then(data => {
+                if (data.success && data.voices) {
+                    setAvailableVoices(data.voices);
+                }
+            })
+            .catch(err => console.error('Failed to load voices:', err));
     }, []);
 
     const processVoiceFile = async (file: File) => {
@@ -113,7 +130,7 @@ export default function LipsyncGenerator({
                 body: JSON.stringify({
                     text,
                     characterName,
-                    voicePath: uploadedVoicePath || undefined,
+                    voicePath: uploadedVoicePath || (selectedPresetVoice ? `voices/${selectedPresetVoice}/voice` : undefined),
                 }),
             });
 
@@ -321,17 +338,63 @@ export default function LipsyncGenerator({
                 </div>
 
                 {/* Voice Upload */}
+                {/* Voice Selection */}
                 <div>
                     <label style={{ display: 'block', fontSize: '13px', marginBottom: '8px', color: '#ccc', fontWeight: '600' }}>
                         Voice Reference (Optional)
                     </label>
+
+                    {/* Preset Voice Dropdown */}
+                    <select
+                        value={selectedPresetVoice}
+                        onChange={(e) => {
+                            setSelectedPresetVoice(e.target.value);
+                            if (e.target.value) {
+                                // Clear custom upload if selecting preset
+                                setUploadedVoicePath(null);
+                                setUploadedVoiceName(null);
+                            }
+                        }}
+                        disabled={isGenerating || !!uploadedVoiceName}
+                        style={{
+                            width: '100%',
+                            padding: '12px',
+                            background: 'black',
+                            border: '1px solid #333',
+                            color: 'white',
+                            borderRadius: '8px',
+                            marginBottom: '12px',
+                            cursor: uploadedVoiceName ? 'not-allowed' : 'pointer',
+                            opacity: uploadedVoiceName ? 0.5 : 1
+                        }}
+                    >
+                        <option value="">-- Use Default / Auto Voice --</option>
+                        {availableVoices.map(voice => (
+                            <option key={voice.name} value={voice.name}>
+                                {voice.name} - {voice.description}
+                            </option>
+                        ))}
+                    </select>
+
+                    <div style={{
+                        textAlign: 'center',
+                        margin: '12px 0',
+                        fontSize: '11px',
+                        color: '#666',
+                        fontWeight: '600',
+                        textTransform: 'uppercase',
+                        letterSpacing: '1px'
+                    }}>
+                        OR UPLOAD CUSTOM
+                    </div>
+
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                         <label
                             onDragOver={(e) => e.preventDefault()}
                             onDrop={handleVoiceDrop}
                             style={{
                                 flex: 1,
-                                cursor: 'pointer',
+                                cursor: selectedPresetVoice ? 'not-allowed' : 'pointer',
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
@@ -342,14 +405,15 @@ export default function LipsyncGenerator({
                                 color: '#888',
                                 fontSize: '12px',
                                 transition: 'all 0.2s',
-                                width: '100%'
+                                width: '100%',
+                                opacity: selectedPresetVoice ? 0.5 : 1
                             }}>
                             <input
                                 type="file"
                                 accept="audio/*"
                                 onChange={handleVoiceUpload}
                                 style={{ display: 'none' }}
-                                disabled={isUploading}
+                                disabled={isUploading || !!selectedPresetVoice}
                             />
                             {isUploading ? '⏳ Uploading & Transcribing...' : (uploadedVoiceName || '📁 Drag & Drop or Click to Upload...')}
                         </label>
