@@ -148,8 +148,7 @@ if not exist "%VOX_DIR%" (
 )
 
 cd /d "%VOX_DIR%"
-REM Force CPU usage
-set CUDA_VISIBLE_DEVICES=-1
+echo [INFO] Launching VoxCPM (GPU Enabled)...
 "%PYTHON%" app.py
 
 if %errorlevel% neq 0 (
