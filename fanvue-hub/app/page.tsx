@@ -9,11 +9,12 @@ export default function LandingPage() {
 
     useEffect(() => {
         let attempts = 0;
-        const maxAttempts = 60; // 60 seconds max wait
+        const maxAttempts = 120; // 2 minutes max wait
 
         const checkComfyUI = async () => {
             try {
-                const res = await fetch('http://localhost:8188/system_stats', {
+                // Use our own API to check ComfyUI (avoids CORS)
+                const res = await fetch('/api/comfyui/models', {
                     method: 'GET',
                     cache: 'no-store'
                 });
@@ -25,6 +26,7 @@ export default function LandingPage() {
                 }
             } catch (e) {
                 // ComfyUI not ready yet
+                console.log('ComfyUI check failed:', e);
             }
 
             attempts++;
@@ -32,11 +34,12 @@ export default function LandingPage() {
                 setStatusMessage(`Loading ComfyUI... (${attempts}s)`);
                 setTimeout(checkComfyUI, 1000);
             } else {
-                setStatusMessage('ComfyUI timeout - refresh page');
+                setStatusMessage('ComfyUI timeout - please restart');
             }
         };
 
-        checkComfyUI();
+        // Start checking after a brief delay
+        setTimeout(checkComfyUI, 2000);
     }, []);
 
     return (
