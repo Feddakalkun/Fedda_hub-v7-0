@@ -12,16 +12,20 @@ interface Message {
 }
 
 interface VoiceChatProps {
+    characterId: string;  // ✅ ADDED for memory
     characterSlug: string;
     characterName: string;
     systemPrompt?: string;
+    systemInstruction?: string;  // ✅ ADDED for better context
     nsfwEnabled?: boolean;
 }
 
 export default function VoiceChat({
+    characterId,
     characterSlug,
     characterName,
     systemPrompt,
+    systemInstruction,
     nsfwEnabled = false
 }: VoiceChatProps) {
     const [messages, setMessages] = useState<Message[]>([]);
@@ -118,9 +122,12 @@ export default function VoiceChat({
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
+                    characterId,  // ✅ ADDED for memory
                     characterSlug,
+                    userId: 'voice-user',  // ✅ ADDED for memory (use unique ID if tracking users)
                     messages: [...messages, userMessage],
                     systemPrompt,
+                    systemInstruction,  // ✅ ADDED for better context
                     nsfwEnabled
                 })
             });
@@ -248,8 +255,8 @@ export default function VoiceChat({
                     >
                         <div
                             className={`max-w-[70%] rounded-lg p-3 ${msg.role === 'user'
-                                    ? 'bg-blue-600 text-white'
-                                    : 'bg-gray-800 text-gray-100'
+                                ? 'bg-blue-600 text-white'
+                                : 'bg-gray-800 text-gray-100'
                                 }`}
                         >
                             <div className="text-xs opacity-70 mb-1">

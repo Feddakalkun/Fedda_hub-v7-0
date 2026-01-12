@@ -47,12 +47,45 @@ export default function SMSChat({ character, onBack }: SMSChatProps) {
         setIsTyping(true);
 
         try {
+            // 🎨 Check for image commands
+            const { parseCommand } = await import('@/lib/command-parser');
+            const command = parseCommand(inputText);
+
+            if (command.type === 'image') {
+                const imgRes = await fetch('/api/comfyui/generate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        characterSlug: character.slug,
+                        prompt: command.prompt || 'sexy selfie',
+                        numImages: 1
+                    })
+                });
+
+                const imgData = await imgRes.json();
+                const aiResponse = imgData.success
+                    ? `Mmm okay babe 😘 generating that for you now...`
+                    : `I tried but my camera's being weird rn 😅`;
+
+                const aiMessage: Message = {
+                    id: (Date.now() + 1).toString(),
+                    text: aiResponse,
+                    sender: 'character',
+                    timestamp: new Date()
+                };
+                setMessages(prev => [...prev, aiMessage]);
+                setIsTyping(false);
+                return; // Skip normal chat
+            }
+
             // Call Ollama API
             const res = await fetch('/api/ollama/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
+                    characterId: character.id,  // ✅ ADDED: Required for memory loading
                     characterSlug: character.slug,
+                    userId: 'sms-user',  // ✅ ADDED: Required for memory loading (use unique ID if you track users)
                     messages: [
                         ...messages.map(m => ({
                             role: m.sender === 'user' ? 'user' : 'assistant',
@@ -61,6 +94,7 @@ export default function SMSChat({ character, onBack }: SMSChatProps) {
                         { role: 'user', content: inputText }
                     ],
                     systemPrompt: character.bio,
+                    systemInstruction: character.bio,  // ✅ ADDED: More context
                     nsfwEnabled: true
                 })
             });

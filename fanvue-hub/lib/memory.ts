@@ -52,7 +52,38 @@ export async function extractMemoriesFromMessage(
         return parseExtractedJSON(content);
 
     } catch (e: any) {
-        console.warn("[Memory] Ollama Extraction Failed, trying Gemini...", e.message);
+        console.warn("[Memory] Ollama Extraction Failed, trying regex fallback...", e.message);
+
+        // 🎯 SIMPLE REGEX FALLBACK (always works)
+        const regexMemories: ExtractedMemory[] = [];
+
+        // Extract name patterns
+        const namePatterns = [
+            /(?:my name is|i'm|i am|call me)\s+([a-z]+)/i,
+            /name\s+is\s+([a-z]+)/i,
+            /([A-Z][a-z]+)\s+here/,
+        ];
+
+        for (const pattern of namePatterns) {
+            const match = message.match(pattern);
+            if (match && match[1]) {
+                regexMemories.push({
+                    type: 'name',
+                    value: match[1],
+                    confidence: 80
+                });
+                console.log(`[Memory] 📝 Regex extracted name: ${match[1]}`);
+                break; // Only one name
+            }
+        }
+
+        // If regex found something, use it
+        if (regexMemories.length > 0) {
+            return regexMemories;
+        }
+
+        // Otherwise try Gemini
+        console.warn("[Memory] No regex matches, trying Gemini...");
         return await extractWithGemini(message, systemPrompt);
     }
 }
@@ -201,7 +232,7 @@ export async function loadCharacterMemories(characterId: string, userId: string)
 export function formatMemoriesForPrompt(memories: ExtractedMemory[]): string {
     if (memories.length === 0) return '';
     const unique = Array.from(new Set(memories.map(m => `${m.type}: ${m.value}`)));
-    return `\n\n=== RECALLED MEMORIES ABOUT USER ===\n${unique.join('\n')}\n====================================`;
+    return `\n\n[INTERNAL MEMORY - DO NOT SPEAK THIS OUT LOUD]\nWhat you know about this user:\n${unique.join('\n')}\n[USE THIS INFO NATURALLY IN CONVERSATION - DON'T RECITE IT]`;
 }
 
 export async function applyMemoryDecay(characterId: string, userId: string) {

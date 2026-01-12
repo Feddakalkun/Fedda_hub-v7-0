@@ -27,6 +27,9 @@ export default function PhoneCall({ character, onHangup }: PhoneCallProps) {
     const [isSpeaker, setIsSpeaker] = useState(true); // Default to speaker on
     const [error, setError] = useState<string | null>(null);
 
+    // ✅ CRITICAL FIX: Use ref instead of state to avoid stale closures
+    const conversationHistoryRef = useRef<Array<{ role: 'user' | 'assistant', content: string }>>([]);
+
     // Audio handling
     const currentAudioRef = useRef<HTMLAudioElement | null>(null);
     const recognitionRef = useRef<any>(null);
@@ -39,7 +42,21 @@ export default function PhoneCall({ character, onHangup }: PhoneCallProps) {
     useEffect(() => {
         const timer = setTimeout(() => {
             setCallStatus('connected');
-            handleAIResponse("Hello? Is that you?");
+
+            // 🎲 Random greeting variety
+            const greetings = [
+                `Hey! It's ${character.name}. What's up?`,
+                `${character.name} here... everything okay?`,
+                `Yo! Didn't expect you to call. What's going on?`,
+                `Hey babe, it's ${character.name}. Miss me already?`,
+                `${character.name} speaking... who's this?`,
+                `Oh hey! Perfect timing, I was just thinking about you.`,
+                `Heyyy, it's me! What are you up to?`,
+                `${character.name} here. Talk to me!`
+            ];
+
+            const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+            handleAIResponse(randomGreeting);
         }, 2000);
         return () => clearTimeout(timer);
     }, []);
@@ -72,11 +89,14 @@ export default function PhoneCall({ character, onHangup }: PhoneCallProps) {
 
             recognition.onend = () => {
                 addLog("Mic: Stopped");
-                // Auto-restart if we should be listening
-                if (callStatus === 'connected' || callStatus === 'listening') {
-                    if (!isMuted) {
-                        try { recognition.start(); } catch { }
-                    }
+                // ✅ ALWAYS auto-restart unless muted (keep mic active continuously)
+                if (!isMuted) {
+                    setTimeout(() => {
+                        try {
+                            recognition.start();
+                            addLog("Mic: Restarted");
+                        } catch { }
+                    }, 100); // Small delay to prevent rapid restart errors
                 }
             };
 
@@ -127,7 +147,16 @@ export default function PhoneCall({ character, onHangup }: PhoneCallProps) {
 
         if (callStatus === 'listening' || callStatus === 'connected' || callStatus === 'speaking') {
             if (!isMuted) {
-                try { recognition.start(); } catch { }
+                try {
+                    recognition.start();
+                    console.log('[PhoneCall] 🎤 Starting recognition, status:', callStatus);
+                    addLog("Mic: Starting");
+                } catch (e: any) {
+                    // Already running is OK
+                    if (!e.message?.includes('already started')) {
+                        console.error('[PhoneCall] Mic start failed:', e);
+                    }
+                }
             }
         }
     }, [callStatus, isMuted]);
@@ -142,6 +171,14 @@ export default function PhoneCall({ character, onHangup }: PhoneCallProps) {
     const handleAIResponse = async (inputText: string, isUserMessage = false) => {
         if (!inputText.trim()) return;
 
+        // 🛑 STOP recognition to prevent feedback loop (mic hearing her voice)
+        if (recognitionRef.current) {
+            try {
+                recognitionRef.current.stop();
+                addLog("Mic: Paused (speaking)");
+            } catch { }
+        }
+
         // Stop listening while processing/speaking
         setCallStatus('speaking');
 
@@ -149,20 +186,103 @@ export default function PhoneCall({ character, onHangup }: PhoneCallProps) {
 
         try {
             if (isUserMessage) {
-                // MEMORY EXTRACTION (Phase 1)
-                fetch('/api/memory/extract', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        text: inputText,
-                        characterId: character.id,
-                        userId: 'user-local'
-                    })
-                }).catch(e => console.error("Memory Trigger Failed", e));
+                // MEMORY EXTRACTION (Phase 1) - Now with proper error handling
+                try {
+                    console.log('[PhoneCall] Extracting memory from:', inputText);
+                    const memRes = await fetch('/api/memory/extract', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            text: inputText,
+                            characterId: character.id,
+                            userId: 'user-local'
+                        })
+                    });
 
-                // Determine model from character prop
+                    const memData = await memRes.json();
+                    if (memData.success) {
+                        console.log(`[PhoneCall] ✅ Saved ${memData.count} memories`);
+                        addLog(`Mem: Saved ${memData.count}`);
+                    } else {
+                        console.warn('[PhoneCall] ❌ Memory extraction failed:', memData.error);
+                        addLog('Mem: Failed');
+                    }
+                } catch (e: any) {
+                    console.error("[PhoneCall] Memory Trigger Failed:", e);
+                    addLog('Mem: Error');
+                }
+
+                // 🎨 COMMAND DETECTION (Check for image/video requests)
+                const { parseCommand } = await import('@/lib/command-parser');
+                const command = parseCommand(inputText);
+
+                if (command.type === 'image') {
+                    addLog('Cmd: Image Gen');
+                    console.log('[PhoneCall] 📸 Image request detected:', command.prompt);
+
+                    // Trigger image generation
+                    try {
+                        const imgRes = await fetch('/api/comfyui/generate', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                characterSlug: character.slug,
+                                prompt: command.prompt,
+                                numImages: 1
+                            })
+                        });
+
+                        const imgData = await imgRes.json();
+                        if (imgData.success) {
+                            // AI acknowledges and confirms
+                            responseText = `Mmm... [giggles] generating that for you right now, babe. Give me a sec...`;
+                            addLog('Img: Generating...');
+                        }
+                    } catch (imgErr) {
+                        console.error('[PhoneCall] Image gen failed:', imgErr);
+                        responseText = "I tried to send you something sexy but my camera's acting up... [giggles] we can keep talking though.";
+                    }
+
+                    // Skip normal AI response
+                    setCallStatus('listening');
+
+                    // Speak the acknowledgment
+                    const spokenText = responseText.replace(/\*[^*]+\*/g, '').trim();
+                    if (spokenText.length > 0) {
+                        const ttsRes = await fetch('/api/gemini/tts', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                text: spokenText,
+                                voiceProvider: character.voiceProvider,
+                                voiceModel: character.voiceModel,
+                                voiceId: character.voiceId,
+                                voiceDescription: character.voiceDescription
+                            })
+                        });
+
+                        if (ttsRes.ok) {
+                            const audioBlob = await ttsRes.blob();
+                            const audioUrl = URL.createObjectURL(audioBlob);
+                            const audio = new Audio(audioUrl);
+                            audio.onended = () => setCallStatus('listening');
+                            await audio.play();
+                        }
+                    }
+
+                    return; // Exit early, no normal AI response needed
+                }
+
                 const aiModel = character.llmModel || 'mistral';
                 addLog(`AI: Thinking (${aiModel})...`);
+
+                const messagesToSend = [
+                    ...conversationHistoryRef.current,
+                    { role: 'user' as const, content: inputText }
+                ];
+
+                console.log(`[PhoneCall] 💬 Sending ${messagesToSend.length} messages to AI (including ${conversationHistoryRef.current.length} history)`);
+                addLog(`Hist: ${conversationHistoryRef.current.length} msgs`);
 
                 const chatRes = await fetch('/api/ollama/chat', {
                     method: 'POST',
@@ -172,8 +292,9 @@ export default function PhoneCall({ character, onHangup }: PhoneCallProps) {
                         characterId: character.id,
                         userId: 'user-local',
                         model: aiModel,
-                        messages: [{ role: 'user', content: inputText }],
+                        messages: messagesToSend,  // ✅ Send full history
                         systemPrompt: character.bio,
+                        systemInstruction: character.bio,  // ✅ ADDED: More context
                         nsfwEnabled: true
                     })
                 });
@@ -185,7 +306,23 @@ export default function PhoneCall({ character, onHangup }: PhoneCallProps) {
                     addLog("Error: AI Failed");
                 } else {
                     responseText = chatData.message;
+
+                    // ✅ SAVE to history
+                    console.log('[PhoneCall] 💾 Saving to history: user + assistant');
+                    conversationHistoryRef.current = [
+                        ...conversationHistoryRef.current,
+                        { role: 'user' as const, content: inputText },
+                        { role: 'assistant' as const, content: responseText }
+                    ];
+                    console.log('[PhoneCall] 💾 New history length:', conversationHistoryRef.current.length);
                 }
+            } else {
+                // Not a user message (e.g., initial greeting) - still save to history
+                conversationHistoryRef.current = [
+                    ...conversationHistoryRef.current,
+                    { role: 'assistant' as const, content: responseText }
+                ];
+                console.log('[PhoneCall] 💾 Saved greeting to history, length:', conversationHistoryRef.current.length);
             }
 
             // Text to Speech
@@ -219,9 +356,16 @@ export default function PhoneCall({ character, onHangup }: PhoneCallProps) {
 
                 audio.onended = () => {
                     addLog("AI: Finished (Wait 1s)");
-                    // Wait 1s to avoid echo loop
+                    // Wait 1s to avoid echo loop, then restart mic
                     setTimeout(() => {
                         setCallStatus('listening');
+                        // ✅ Explicitly restart recognition after she finishes
+                        if (recognitionRef.current && !isMuted) {
+                            try {
+                                recognitionRef.current.start();
+                                addLog("Mic: Resumed");
+                            } catch { }
+                        }
                     }, 1000);
                 };
 

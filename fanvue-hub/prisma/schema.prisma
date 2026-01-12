@@ -25,6 +25,18 @@ model AppConfig {
   geminiApiKey    String?
   elevenLabsApiKey String?
   
+  // New TTS Providers
+  azureSpeechKey      String?
+  azureSpeechRegion   String?
+  googleCloudTtsKey   String?
+  awsAccessKeyId      String?
+  awsSecretAccessKey  String?
+  awsRegion           String?
+  
+  // Uberduck TTS (Cost-effective)
+  uberduckApiKey      String?
+  uberduckApiSecret   String?
+  
   setupCompleted  Boolean  @default(false)
 }
 

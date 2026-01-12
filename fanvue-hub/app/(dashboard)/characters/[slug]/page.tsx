@@ -684,10 +684,67 @@ export default function CharacterDashboard({ params }: { params: Promise<{ slug:
                                         style={{ width: '100%', padding: '12px', background: 'black', border: '1px solid #333', color: 'white', borderRadius: '8px' }}
                                     >
                                         <option value="gemini">Gemini (Experimental)</option>
-                                        <option value="elevenlabs">ElevenLabs</option>
-                                        <option value="browser">Browser (Free)</option>
+                                        <option value="elevenlabs">ElevenLabs (Paid)</option>
+                                        <option value="uberduck">Uberduck (Cost-Effective)</option>
+                                        <option value="azure">Azure (Best Free Tier)</option>
+                                        <option value="google">Google Cloud (Good Free Tier)</option>
+                                        <option value="polly">AWS Polly (Reliable)</option>
+                                        <option value="browser">Browser (Local Free)</option>
                                     </select>
                                 </div>
+
+                                {/* Azure Voice Settings */}
+                                {editForm.voiceProvider === 'azure' && (
+                                    <div style={{ marginBottom: '16px' }}>
+                                        <label style={{ display: 'block', fontSize: '13px', marginBottom: '8px', color: '#888' }}>Azure Voice Model</label>
+                                        <select
+                                            value={editForm.voiceModel || 'en-US-AriaNeural'}
+                                            onChange={e => setEditForm({ ...editForm, voiceModel: e.target.value })}
+                                            style={{ width: '100%', padding: '12px', background: 'black', border: '1px solid #333', color: 'white', borderRadius: '8px' }}
+                                        >
+                                            <option value="en-US-AriaNeural">Aria (Natural & Versatile)</option>
+                                            <option value="en-US-JennyNeural">Jenny (Friendly & Professional)</option>
+                                            <option value="en-US-SaraNeural">Sara (Young Adult)</option>
+                                            <option value="en-US-AnaNeural">Ana (Warm)</option>
+                                        </select>
+                                    </div>
+                                )}
+
+                                {/* Google Voice Settings */}
+                                {editForm.voiceProvider === 'google' && (
+                                    <div style={{ marginBottom: '16px' }}>
+                                        <label style={{ display: 'block', fontSize: '13px', marginBottom: '8px', color: '#888' }}>Google Voice Model</label>
+                                        <select
+                                            value={editForm.voiceModel || 'en-US-Wavenet-F'}
+                                            onChange={e => setEditForm({ ...editForm, voiceModel: e.target.value })}
+                                            style={{ width: '100%', padding: '12px', background: 'black', border: '1px solid #333', color: 'white', borderRadius: '8px' }}
+                                        >
+                                            <option value="en-US-Wavenet-F">Wavenet F (Warm Female)</option>
+                                            <option value="en-US-Wavenet-C">Wavenet C (Professional Female)</option>
+                                            <option value="en-US-Wavenet-E">Wavenet E (Mature Female)</option>
+                                            <option value="en-US-Neural2-C">Neural2 C (High Quality)</option>
+                                            <option value="en-US-Neural2-F">Neural2 F (High Quality)</option>
+                                        </select>
+                                    </div>
+                                )}
+
+                                {/* Polly Voice Settings */}
+                                {editForm.voiceProvider === 'polly' && (
+                                    <div style={{ marginBottom: '16px' }}>
+                                        <label style={{ display: 'block', fontSize: '13px', marginBottom: '8px', color: '#888' }}>Polly Voice Model</label>
+                                        <select
+                                            value={editForm.voiceModel || 'Joanna'}
+                                            onChange={e => setEditForm({ ...editForm, voiceModel: e.target.value })}
+                                            style={{ width: '100%', padding: '12px', background: 'black', border: '1px solid #333', color: 'white', borderRadius: '8px' }}
+                                        >
+                                            <option value="Joanna">Joanna (Professional US)</option>
+                                            <option value="Kendra">Kendra (Female US)</option>
+                                            <option value="Salli">Salli (Teen/Young Adult)</option>
+                                            <option value="Kimberly">Kimberly (Energetic)</option>
+                                            <option value="Ruth">Ruth (Mature)</option>
+                                        </select>
+                                    </div>
+                                )}
 
                                 {(editForm.voiceProvider === 'elevenlabs') && (
                                     <div style={{ marginBottom: '16px' }}>
@@ -698,6 +755,20 @@ export default function CharacterDashboard({ params }: { params: Promise<{ slug:
                                             placeholder="Voice ID"
                                             style={{ width: '100%', padding: '12px', background: 'black', border: '1px solid #333', color: 'white', borderRadius: '8px' }}
                                         />
+                                    </div>
+                                )}
+
+                                {/* Uberduck Voice Settings */}
+                                {editForm.voiceProvider === 'uberduck' && (
+                                    <div style={{ marginBottom: '16px' }}>
+                                        <label style={{ display: 'block', fontSize: '13px', marginBottom: '8px', color: '#888' }}>Uberduck Voice Model (UUID)</label>
+                                        <input
+                                            value={editForm.voiceModel || 'voice_en_female_03'}
+                                            onChange={e => setEditForm({ ...editForm, voiceModel: e.target.value })}
+                                            placeholder="Voice UUID"
+                                            style={{ width: '100%', padding: '12px', background: 'black', border: '1px solid #333', color: 'white', borderRadius: '8px' }}
+                                        />
+                                        <p style={{ fontSize: '11px', color: '#666', marginTop: '4px' }}>Find UUIDs at uberduck.ai/browse/voicemodel</p>
                                     </div>
                                 )}
 

@@ -7,14 +7,15 @@ export async function POST(request: NextRequest) {
         const {
             clientId, clientSecret,
             geminiApiKey, falApiKey, elevenLabsApiKey,
-            comfyuiUrl
+            comfyuiUrl,
+            // New Keys
+            azureSpeechKey, azureSpeechRegion,
+            googleCloudTtsKey,
+            awsAccessKeyId, awsSecretAccessKey, awsRegion,
+            uberduckApiKey, uberduckApiSecret
         } = body;
 
         // Upsert the global configuration
-        // Only update fields that are provided (undefined fields are ignored by Prisma update usually, strictly checks needed?)
-        // Prisma update needs explicit undefined check if we want partial updates, but here we probably submit the whole form.
-        // Let's use spread carefully.
-
         await prisma.appConfig.upsert({
             where: { id: 'global' },
             update: {
@@ -24,7 +25,18 @@ export async function POST(request: NextRequest) {
                 ...(falApiKey && { falApiKey }),
                 ...(elevenLabsApiKey && { elevenLabsApiKey }),
                 ...(comfyuiUrl && { comfyuiUrl }),
-                setupCompleted: true, // Mark true if we are saving at all? Or only if critical keys exist?
+
+                // Update New Keys
+                ...(azureSpeechKey && { azureSpeechKey }),
+                ...(azureSpeechRegion && { azureSpeechRegion }),
+                ...(googleCloudTtsKey && { googleCloudTtsKey }),
+                ...(awsAccessKeyId && { awsAccessKeyId }),
+                ...(awsSecretAccessKey && { awsSecretAccessKey }),
+                ...(awsRegion && { awsRegion }),
+                ...(uberduckApiKey && { uberduckApiKey }),
+                ...(uberduckApiSecret && { uberduckApiSecret }),
+
+                setupCompleted: true,
             },
             create: {
                 id: 'global',
@@ -34,6 +46,17 @@ export async function POST(request: NextRequest) {
                 falApiKey: falApiKey || '',
                 elevenLabsApiKey: elevenLabsApiKey || '',
                 comfyuiUrl: comfyuiUrl || 'http://127.0.0.1:8188',
+
+                // Create New Keys
+                azureSpeechKey: azureSpeechKey || '',
+                azureSpeechRegion: azureSpeechRegion || 'eastus',
+                googleCloudTtsKey: googleCloudTtsKey || '',
+                awsAccessKeyId: awsAccessKeyId || '',
+                awsSecretAccessKey: awsSecretAccessKey || '',
+                awsRegion: awsRegion || 'us-east-1',
+                uberduckApiKey: uberduckApiKey || '',
+                uberduckApiSecret: uberduckApiSecret || '',
+
                 setupCompleted: true,
             },
         });
@@ -55,14 +78,22 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({
         setupCompleted: config?.setupCompleted || false,
         config: {
-            // Return values so user can see what's set (mask secrets if desired, but for local app user might want to see)
-            // Let's Mask details for safety in UI
             clientId: config?.clientId || '',
             hasClientSecret: !!config?.clientSecret,
             geminiApiKey: config?.geminiApiKey ? '••••••••' + config.geminiApiKey.slice(-4) : '',
             falApiKey: config?.falApiKey ? '••••••••' + config.falApiKey.slice(-4) : '',
             elevenLabsApiKey: config?.elevenLabsApiKey ? '••••••••' + config.elevenLabsApiKey.slice(-4) : '',
             comfyuiUrl: config?.comfyuiUrl || 'http://127.0.0.1:8188',
+
+            // Return New Keys (Masked)
+            azureSpeechKey: config?.azureSpeechKey ? '••••••••' + config.azureSpeechKey.slice(-4) : '',
+            azureSpeechRegion: config?.azureSpeechRegion || '',
+            googleCloudTtsKey: config?.googleCloudTtsKey ? '••••••••' + config.googleCloudTtsKey.slice(-4) : '',
+            awsAccessKeyId: config?.awsAccessKeyId ? '••••••••' + config.awsAccessKeyId.slice(-4) : '',
+            awsSecretAccessKey: config?.awsSecretAccessKey ? '••••••••' + config.awsSecretAccessKey.slice(-4) : '',
+            awsRegion: config?.awsRegion || '',
+            uberduckApiKey: config?.uberduckApiKey ? '••••••••' + config.uberduckApiKey.slice(-4) : '',
+            uberduckApiSecret: config?.uberduckApiSecret ? '••••••••' + config.uberduckApiSecret.slice(-4) : '',
         }
     });
 }

@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
 
     try {
         const body = await request.json();
-        const { characterSlug, prompt, negativePrompt, numImages, loraPath, workflow } = body;
+        const { characterSlug, prompt, negativePrompt, numImages, loraPath, workflow, aspectRatio } = body;
 
         // If a raw workflow is provided, use the old behavior
         if (workflow) {
@@ -106,6 +106,14 @@ export async function POST(request: NextRequest) {
         // Update batch size (node 13 - EmptyLatent)
         if (workflowTemplate['13']?.inputs) {
             workflowTemplate['13'].inputs.batch_size = numImages || 1;
+        }
+
+        // Update AspectRatio and Resolution (node 30 - AspectRatioImageSize)
+        if (workflowTemplate['30']?.inputs) {
+            workflowTemplate['30'].inputs.width = 1280; // Increased from 768
+            workflowTemplate['30'].inputs.height = 0; // Auto-calculated
+            workflowTemplate['30'].inputs.aspect_ratio = aspectRatio || '1:1';
+            workflowTemplate['30'].inputs.direction = 'Vertical';
         }
 
         // CRITICAL FIX: Update SaveImage node (node 9) filename prefix to use timestamp
