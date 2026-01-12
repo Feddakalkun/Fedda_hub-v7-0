@@ -47,6 +47,7 @@ export default function LandingPage() {
 
             {/* Background Video */}
             <video
+                key={comfyReady ? 'ready' : 'loading'} // Force re-render on state change
                 autoPlay
                 loop
                 muted
@@ -59,11 +60,19 @@ export default function LandingPage() {
                     height: '100%',
                     objectFit: 'cover',
                     opacity: 0.6,
-                    filter: 'grayscale(100%) contrast(1.2)'
+                    filter: 'grayscale(100%) contrast(1.2)',
+                    animation: 'videoFadeIn 1s ease-in'
                 }}
             >
-                <source src="/bg.mp4" type="video/mp4" />
+                <source src={comfyReady ? '/done-loading.mp4' : '/bg.mp4'} type="video/mp4" />
             </video>
+
+            <style>{`
+                @keyframes videoFadeIn {
+                    from { opacity: 0; }
+                    to { opacity: 0.6; }
+                }
+            `}</style>
 
             {/* Overlay Gradient */}
             <div style={{
