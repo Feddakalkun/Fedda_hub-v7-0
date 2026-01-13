@@ -11,6 +11,7 @@ interface LTX2GeneratorProps {
 export default function LTX2Generator({ characterSlug }: LTX2GeneratorProps) {
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const [prompt, setPrompt] = useState<string>('Cinematic camera pan, subtle movement');
+    const [resolution, setResolution] = useState<number>(512); // 256, 512, 768, 1024
     const [isLibraryOpen, setIsLibraryOpen] = useState(false);
     const [generatedVideo, setGeneratedVideo] = useState<string | null>(null);
 
@@ -42,6 +43,7 @@ export default function LTX2Generator({ characterSlug }: LTX2GeneratorProps) {
                 body: JSON.stringify({
                     prompt,
                     imageFilename,
+                    resolution,
                     seed: Math.floor(Math.random() * 1000000000)
                 })
             });
@@ -78,9 +80,14 @@ export default function LTX2Generator({ characterSlug }: LTX2GeneratorProps) {
         if (progressState.status === 'done' && progressState.promptId) {
             fetchLatestOutput(progressState.promptId).then(url => {
                 if (url) setGeneratedVideo(url);
+
+                // Allow "Complete" to show briefly then reset so button is clickable
+                setTimeout(() => {
+                    resetProgress();
+                }, 1000);
             });
         }
-    }, [progressState.status, progressState.promptId]);
+    }, [progressState.status, progressState.promptId, resetProgress]);
 
 
     // 3. Save to Library
@@ -166,6 +173,32 @@ export default function LTX2Generator({ characterSlug }: LTX2GeneratorProps) {
                                 background: 'black', border: '1px solid #333', color: 'white'
                             }}
                         />
+                    </div>
+
+                    {/* Resolution Selector */}
+                    <div>
+                        <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', color: '#ccc' }}>
+                            3. Resolution
+                        </label>
+                        <select
+                            value={resolution}
+                            onChange={(e) => setResolution(parseInt(e.target.value))}
+                            style={{
+                                width: '100%',
+                                padding: '12px',
+                                borderRadius: '8px',
+                                background: 'black',
+                                border: '1px solid #333',
+                                color: 'white',
+                                fontSize: '14px',
+                                cursor: 'pointer'
+                            }}
+                        >
+                            <option value="256">256 × 256 (Fast)</option>
+                            <option value="512">512 × 512 (Balanced)</option>
+                            <option value="768">768 × 768 (High Quality)</option>
+                            <option value="1024">1024 × 1024 (Ultra)</option>
+                        </select>
                     </div>
 
                     {/* Generate Button */}
