@@ -48,20 +48,51 @@ function Download-File {
     param([string]$Url, [string]$Dest)
     if (-not (Test-Path $Dest)) {
         Write-Log "Downloading $(Split-Path $Dest -Leaf)..."
+        
+        $success = $false
+        
+        # Try BITS first (faster for large files)
         try {
-            # Use BITS for faster downloads (10-20x faster than Invoke-WebRequest)
             Import-Module BitsTransfer -ErrorAction SilentlyContinue
             if (Get-Command Start-BitsTransfer -ErrorAction SilentlyContinue) {
-                Start-BitsTransfer -Source $Url -Destination $Dest -Description "Downloading $(Split-Path $Dest -Leaf)" -DisplayName "Fanvue Hub Installer"
-            }
-            else {
-                # Fallback to curl (built into Windows 10+)
-                & curl.exe -L -o $Dest $Url --progress-bar
+                Write-Log "Using BITS transfer..."
+                Start-BitsTransfer -Source $Url -Destination $Dest -Description "Downloading $(Split-Path $Dest -Leaf)" -DisplayName "Fanvue Hub Installer" -ErrorAction Stop
+                $success = $true
             }
         }
         catch {
-            Write-Log "ERROR: Failed to download $Url"
-            throw $_ 
+            Write-Log "BITS transfer failed: $($_.Exception.Message)"
+            Write-Log "Falling back to curl..."
+        }
+        
+        # Fallback to curl if BITS failed or is unavailable
+        if (-not $success) {
+            try {
+                & curl.exe -L -o $Dest $Url --progress-bar --fail --retry 3 --retry-delay 2
+                if ($LASTEXITCODE -eq 0) {
+                    $success = $true
+                }
+            }
+            catch {
+                Write-Log "Curl failed: $($_.Exception.Message)"
+            }
+        }
+        
+        # Final fallback to Invoke-WebRequest
+        if (-not $success) {
+            try {
+                Write-Log "Falling back to Invoke-WebRequest..."
+                Invoke-WebRequest -Uri $Url -OutFile $Dest -UseBasicParsing
+                $success = $true
+            }
+            catch {
+                Write-Log "ERROR: All download methods failed for $Url"
+                throw $_
+            }
+        }
+        
+        if ($success) {
+            Write-Log "Successfully downloaded $(Split-Path $Dest -Leaf)"
         }
     }
 }
