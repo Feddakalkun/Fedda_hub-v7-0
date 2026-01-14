@@ -26,6 +26,8 @@ interface Character {
     voiceModel?: string;
     voiceId?: string; // ElevenLabs ID
     voiceDescription?: string;
+    fanvueProfileId?: string;
+    fanvueSecret?: string;
     llmModel?: string;
     systemInstruction?: string;
 }
@@ -576,14 +578,40 @@ export default function CharacterDashboard({ params }: { params: Promise<{ slug:
                                 />
                             </div>
                             <div>
-                                <label style={{ display: 'block', fontSize: '13px', marginBottom: '8px', color: '#888' }}>Appearance Prompt</label>
+                                <label style={{ display: 'block', fontSize: '11px', marginBottom: '8px', color: '#888', letterSpacing: '0.05em', textTransform: 'uppercase' }}>Appearance Prompt</label>
                                 <textarea
                                     value={editForm.appearance || ''}
                                     onChange={e => setEditForm({ ...editForm, appearance: e.target.value })}
                                     placeholder="e.g. blonde hair, blue eyes, athletic build..."
                                     rows={3}
-                                    style={{ width: '100%', padding: '12px', background: 'black', border: '1px solid #333', color: 'white', borderRadius: '8px' }}
+                                    style={{ width: '100%', padding: '12px', background: 'black', border: '1px solid #333', color: 'white', borderRadius: '2px' }}
                                 />
+                            </div>
+
+                            {/* Fanvue Integration Settings */}
+                            <div style={{ padding: '16px', background: 'rgba(56, 189, 248, 0.05)', border: '1px solid rgba(56, 189, 248, 0.1)', borderRadius: '2px' }}>
+                                <h4 style={{ fontSize: '14px', fontWeight: '400', color: '#38bdf8', marginTop: 0, marginBottom: '16px', letterSpacing: '0.05em' }}>FANVUE INTEGRATION</h4>
+                                <div style={{ display: 'grid', gap: '16px' }}>
+                                    <div>
+                                        <label style={{ display: 'block', fontSize: '11px', marginBottom: '8px', color: '#888', letterSpacing: '0.05em', textTransform: 'uppercase' }}>Fanvue Profile ID</label>
+                                        <input
+                                            value={editForm.fanvueProfileId || ''}
+                                            onChange={e => setEditForm({ ...editForm, fanvueProfileId: e.target.value })}
+                                            placeholder="Found in Fanvue Dev Tools"
+                                            style={{ width: '100%', padding: '12px', background: 'black', border: '1px solid #333', color: 'white', borderRadius: '2px' }}
+                                        />
+                                    </div>
+                                    <div>
+                                        <label style={{ display: 'block', fontSize: '11px', marginBottom: '8px', color: '#888', letterSpacing: '0.05em', textTransform: 'uppercase' }}>Fanvue Secret (Token)</label>
+                                        <input
+                                            value={editForm.fanvueSecret || ''}
+                                            onChange={e => setEditForm({ ...editForm, fanvueSecret: e.target.value })}
+                                            type="password"
+                                            placeholder="Your automation token"
+                                            style={{ width: '100%', padding: '12px', background: 'black', border: '1px solid #333', color: 'white', borderRadius: '2px' }}
+                                        />
+                                    </div>
+                                </div>
                             </div>
 
                             {/* AI Brain Settings */}
