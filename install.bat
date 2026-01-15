@@ -41,6 +41,9 @@ echo ===========================================================================
 echo   INSTALLATION COMPLETE!
 echo ============================================================================
 echo.
+echo IMPORTANT: Please run 'update.bat' to fetch the latest updates and hotfixes!
+echo            and 'download-emmy.bat' to get the demo character.
+echo.
 echo To start the system, run: run.bat
 echo.
 pause
