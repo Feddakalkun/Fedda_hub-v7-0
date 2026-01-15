@@ -85,17 +85,35 @@ export async function POST(request: NextRequest) {
 
         // Update LoRA (node 131 - Lora Loader Stack rgthree)
         if (workflowTemplate['131']?.inputs) {
-            // Set first LoRA to our character
-            workflowTemplate['131'].inputs.lora_01 = loraPath;
-            workflowTemplate['131'].inputs.strength_01 = 1.0;
+            // Check if we have multiple slots
+            const slots = body.loraSlots || [];
 
-            // Clear other LoRAs from the template to prevent bleeding
-            workflowTemplate['131'].inputs.lora_02 = "None";
-            workflowTemplate['131'].inputs.strength_02 = 0;
-            workflowTemplate['131'].inputs.lora_03 = "None";
-            workflowTemplate['131'].inputs.strength_03 = 0;
-            workflowTemplate['131'].inputs.lora_04 = "None";
-            workflowTemplate['131'].inputs.strength_04 = 0;
+            if (slots.length > 0) {
+                // Map up to 4 slots
+                for (let i = 1; i <= 4; i++) {
+                    const slot = slots[i - 1];
+                    const num = i < 10 ? `0${i}` : i;
+
+                    if (slot && slot.path && slot.path !== '') {
+                        workflowTemplate['131'].inputs[`lora_${num}`] = slot.path;
+                        workflowTemplate['131'].inputs[`strength_${num}`] = slot.strength ?? 1.0;
+                    } else {
+                        workflowTemplate['131'].inputs[`lora_${num}`] = "None";
+                        workflowTemplate['131'].inputs[`strength_${num}`] = 0;
+                    }
+                }
+            } else {
+                // Legacy: Single LoRA
+                workflowTemplate['131'].inputs.lora_01 = loraPath;
+                workflowTemplate['131'].inputs.strength_01 = 1.0;
+
+                workflowTemplate['131'].inputs.lora_02 = "None";
+                workflowTemplate['131'].inputs.strength_02 = 0;
+                workflowTemplate['131'].inputs.lora_03 = "None";
+                workflowTemplate['131'].inputs.strength_03 = 0;
+                workflowTemplate['131'].inputs.lora_04 = "None";
+                workflowTemplate['131'].inputs.strength_04 = 0;
+            }
         }
 
         // Update Seed (node 3 - KSampler)

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function CharacterStudio() {
@@ -28,6 +28,14 @@ export default function CharacterStudio() {
         skinTone: 'Fair & Natural',
         clothingStyle: 'Trendy & Casual',
 
+        // LoRA Mixer (4 slots)
+        loraSlots: [
+            { path: '', strength: 1.0 },
+            { path: '', strength: 0.5 },
+            { path: '', strength: 0.5 },
+            { path: '', strength: 0.5 }
+        ],
+
         // Personality
         personality: [] as string[],
         llmModel: 'mistral',
@@ -41,6 +49,18 @@ export default function CharacterStudio() {
         avatarPrompt: '',
         generatedAvatarUrl: ''
     });
+
+    const [availableLoras, setAvailableLoras] = useState<string[]>([]);
+
+    useEffect(() => {
+        // Fetch LoRAs
+        fetch('/api/models/loras')
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) setAvailableLoras(data.loras);
+            })
+            .catch(err => console.error('Failed to load LoRAs', err));
+    }, []);
 
     const bodyTypes = ['Slim & Petite', 'Athletic & Toned', 'Curvy & Voluptuous', 'Tall & Model-esque', 'Average & Natural'];
     const hairColors = ['Blonde', 'Brunette', 'Black', 'Red', 'Pink', 'Silver', 'Ombre'];
@@ -110,9 +130,54 @@ export default function CharacterStudio() {
                     {step === 1 && (
                         <div className="animate-fade-in">
                             <h2 style={{ fontSize: '24px', fontWeight: '300', marginBottom: '8px', letterSpacing: '-0.02em' }}>Design Your Persona</h2>
-                            <p style={{ color: '#666', fontSize: '14px', marginBottom: '32px' }}>Start by defining the visual appearance. This will generate your base model prompt.</p>
+                            <p style={{ color: '#666', fontSize: '14px', marginBottom: '32px' }}>Define the visual DNA by mixing models and selecting physical traits.</p>
 
                             <div style={{ display: 'grid', gap: '40px' }}>
+
+                                {/* LoRA DNA Mixer */}
+                                <div style={{ background: 'rgba(56, 189, 248, 0.03)', padding: '24px', borderRadius: '8px', border: '1px solid rgba(56, 189, 248, 0.1)' }}>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px' }}>
+                                        <span style={{ fontSize: '18px' }}>🧬</span>
+                                        <h3 style={{ fontSize: '14px', color: '#38bdf8', textTransform: 'uppercase', letterSpacing: '0.1em', margin: 0 }}>Model DNA Mixer</h3>
+                                    </div>
+
+                                    <div style={{ display: 'grid', gap: '16px' }}>
+                                        {[0, 1, 2, 3].map(index => (
+                                            <div key={index} style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+                                                <div style={{ width: '24px', fontSize: '12px', color: '#666', fontWeight: 'bold' }}>#{index + 1}</div>
+                                                <select
+                                                    value={formData.loraSlots[index]?.path || ''}
+                                                    onChange={e => {
+                                                        const newSlots = [...formData.loraSlots];
+                                                        newSlots[index] = { ...newSlots[index], path: e.target.value };
+                                                        setFormData({ ...formData, loraSlots: newSlots });
+                                                    }}
+                                                    style={{ flex: 1, padding: '10px', background: '#000', border: '1px solid #333', color: '#fff', borderRadius: '4px', fontSize: '13px' }}
+                                                >
+                                                    <option value="">Select Base Model / LoRA...</option>
+                                                    {availableLoras.map(l => <option key={l} value={l}>{l}</option>)}
+                                                </select>
+
+                                                <div style={{ width: '150px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                                    <input
+                                                        type="range" min="0" max="100"
+                                                        value={(formData.loraSlots[index]?.strength || 0.0) * 100}
+                                                        onChange={e => {
+                                                            const newSlots = [...formData.loraSlots];
+                                                            newSlots[index] = { ...newSlots[index], strength: parseInt(e.target.value) / 100 };
+                                                            setFormData({ ...formData, loraSlots: newSlots });
+                                                        }}
+                                                        style={{ flex: 1, accentColor: '#38bdf8' }}
+                                                    />
+                                                    <span style={{ width: '40px', fontSize: '12px', color: '#888', textAlign: 'right' }}>
+                                                        {formData.loraSlots[index]?.strength?.toFixed(2)}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <p style={{ fontSize: '11px', color: '#666', marginTop: '12px' }}>Mix up to 4 models. Adjust strength to blend features (e.g. 0.7 = 70% influence).</p>
+                                </div>
 
                                 {/* Body Type - Visual Cards */}
                                 <div>
