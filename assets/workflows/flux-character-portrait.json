@@ -35,12 +35,6 @@
         "32",
         0
       ],
-      "speak_and_recognation": {
-        "__value__": [
-          false,
-          true
-        ]
-      },
       "clip": [
         "131",
         1
@@ -57,12 +51,6 @@
         "35",
         0
       ],
-      "speak_and_recognation": {
-        "__value__": [
-          false,
-          true
-        ]
-      },
       "clip": [
         "131",
         1
@@ -172,13 +160,7 @@
       "validate_files": false,
       "enable_notifications": true,
       "auto_organize": false,
-      "hf_token": "",
-      "speak_and_recognation": {
-        "__value__": [
-          false,
-          true
-        ]
-      }
+      "hf_token": ""
     },
     "class_type": "HuggingFaceDownloader",
     "_meta": {
@@ -187,7 +169,6 @@
   },
   "29": {
     "inputs": {
-      "text": "=== DOWNLOAD REPORT ===\nTotal files: 4\nSuccessful downloads: 0\nAlready existed: 3\nInterrupted: 0\nFailed: 1\nMax concurrent: 3\nSpeed limit: Unlimited\nResume enabled: True\nValidation enabled: False\nAuto-organize: False\n\nDetails:\n✓ z_image_turbo_bf16.safetensors: Already exists (11.46 GB)\n✓ qwen_3_4b.safetensors: Already exists (7.49 GB)\n✓ z-image-vae.safetensors: Already exists (319.77 MB)\n✗ qwen2.5-7b-instruct-q4_k_m.gguf: Download failed - 404 Client Error: Not Found for url: https://huggingface.co/Qwen/Qwen2.5-7B-Instruct-GGUF/resolve/main/qwen2.5-7b-instruct-q4_k_m.gguf",
       "anything": [
         "28",
         0
@@ -212,7 +193,8 @@
   },
   "31": {
     "inputs": {
-      "styles": "No Style"
+      "styles": "No Style",
+      "csv_file_path": "styles.csv"
     },
     "class_type": "Load Styles CSV",
     "_meta": {
@@ -239,13 +221,7 @@
   },
   "34": {
     "inputs": {
-      "string": "(low quality:1.4), bad anatomy, deformed, blurry, , heavy editing, filters, cartoon, anime",
-      "speak_and_recognation": {
-        "__value__": [
-          false,
-          true
-        ]
-      }
+      "string": ""
     },
     "class_type": "String Literal",
     "_meta": {
@@ -272,13 +248,13 @@
   },
   "131": {
     "inputs": {
-      "lora_01": "character01\\character01_zimage.safetensors",
-      "strength_01": 0,
-      "lora_02": "character02\\character02_zimage.safetensors",
+      "lora_01": "None",
+      "strength_01": 1,
+      "lora_02": "None",
       "strength_02": 0,
-      "lora_03": "character03\\character03_zimage.safetensors",
-      "strength_03": 1,
-      "lora_04": "action_loras\\action_example.safetensors",
+      "lora_03": "None",
+      "strength_03": 0,
+      "lora_04": "None",
       "strength_04": 0,
       "model": [
         "16",
@@ -294,70 +270,13 @@
       "title": "Lora Loader Stack (rgthree)"
     }
   },
-  "132": {
-    "inputs": {
-      "lora_01": "character02\\character02_zimage.safetensors",
-      "strength_01": 1.1,
-      "lora_02": "character01\\character01_zimage.safetensors",
-      "strength_02": 0,
-      "lora_03": "None",
-      "strength_03": 1,
-      "lora_04": "None",
-      "strength_04": 1
-    },
-    "class_type": "Lora Loader Stack (rgthree)",
-    "_meta": {
-      "title": "Lora Loader Stack (rgthree)"
-    }
-  },
-  "168": {
-    "inputs": {
-      "text": "Hyper-realistic close-up portrait of Iris looking directly at camera with a playful, mischievous smile, her beautiful face filling most of the frame. She's wearing an impossibly tiny electric blue cheerleader outfit that's barely visible at the bottom of frame - sheer blue crop top clinging to her chest showing clear nipple definition, micro-skirt riding up. But the focus is on her gorgeous face: warm genuine smile, bright eyes sparkling with confidence, natural expression. Her facial skin: completely matte finish, visible micro-pores across forehead, nose, and cheeks, fine peach fuzz on upper lip and jawline catching light, subtle natural freckles scattered across nose bridge, uneven skin tone with natural redness on cheeks and nose, fine expression lines around eyes from genuine smile, natural skin texture like real human skin with all imperfections. Soft natural lighting on face, shallow depth of field blurring background, raw portrait photography, 35mm aesthetic.",
-      "prefix": "Select the prefix add to the text",
-      "subject": "👤Select the subject add to the text",
-      "action": "🎬Select the action add to the text",
-      "clothes": "👚Select the clothes add to the text",
-      "environment": "☀️Select the illumination environment add to the text",
-      "background": "🎞️Select the background add to the text",
-      "nsfw": "🔞Select the nsfw add to the text",
-      "speak_and_recognation": {
-        "__value__": [
-          false,
-          true
-        ]
-      }
-    },
-    "class_type": "easy prompt",
-    "_meta": {
-      "title": "Prompt"
-    }
-  },
-  "169": {
-    "inputs": {
-      "text": "Hyper-realistic close-up portrait of Iris looking directly at camera with a playful, mischievous smile, her beautiful face filling most of the frame. She's wearing an impossibly tiny electric blue cheerleader outfit that's barely visible at the bottom of frame - sheer blue crop top clinging to her chest showing clear nipple definition, micro-skirt riding up. But the focus is on her gorgeous face: warm genuine smile, bright eyes sparkling with confidence, natural expression. Her facial skin: completely matte finish, visible micro-pores across forehead, nose, and cheeks, fine peach fuzz on upper lip and jawline catching light, subtle natural freckles scattered across nose bridge, uneven skin tone with natural redness on cheeks and nose, fine expression lines around eyes from genuine smile, natural skin texture like real human skin with all imperfections. Soft natural lighting on face, shallow depth of field blurring background, raw portrait photography, 35mm aesthetic.",
-      "anything": [
-        "168",
-        0
-      ]
-    },
-    "class_type": "easy showAnything",
-    "_meta": {
-      "title": "GENERATED PROMPT"
-    }
-  },
   "171": {
     "inputs": {
-      "wildcard_text": "Hyper-realistic mirror selfie of Iris in her bedroom, holding phone up capturing her reflection. She's wearing only a tiny oversized white t-shirt that's falling off one shoulder and barely covering her ass, no bra underneath - her perky breasts and hard nipples clearly visible through the thin fabric, hem riding up showing bare thighs and hint of ass cheeks. Looking at camera/phone with cute flirty smile and bedroom eyes, hair messy and sexy. Full body visible in mirror from head to mid-thigh showing her tight young body. Her face: playful seductive expression, matte skin with visible pores, natural freckles, fine peach fuzz, authentic beauty. Her exposed body: completely matte skin on bare shoulders, arms, and thighs, visible micro-pores, fine body hair on thighs catching light, natural skin texture, subtle imperfections. Soft bedroom lighting, mirror frame, raw authentic selfie aesthetic.",
-      "populated_text": "Hyper-realistic mirror selfie of Iris in her bedroom, holding phone up capturing her reflection. She's wearing only a tiny oversized white t-shirt that's falling off one shoulder and barely covering her ass, no bra underneath - her perky breasts and hard nipples clearly visible through the thin fabric, hem riding up showing bare thighs and hint of ass cheeks. Looking at camera/phone with cute flirty smile and bedroom eyes, hair messy and sexy. Full body visible in mirror from head to mid-thigh showing her tight young body. Her face: playful seductive expression, matte skin with visible pores, natural freckles, fine peach fuzz, authentic beauty. Her exposed body: completely matte skin on bare shoulders, arms, and thighs, visible micro-pores, fine body hair on thighs catching light, natural skin texture, subtle imperfections. Soft bedroom lighting, mirror frame, raw authentic selfie aesthetic.",
+      "wildcard_text": "",
+      "populated_text": "",
       "mode": "reproduce",
       "seed": 648564726242624,
-      "Select to add Wildcard": "Select the Wildcard to add to the text",
-      "speak_and_recognation": {
-        "__value__": [
-          false,
-          true
-        ]
-      }
+      "Select to add Wildcard": "Select the Wildcard to add to the text"
     },
     "class_type": "ImpactWildcardProcessor",
     "_meta": {

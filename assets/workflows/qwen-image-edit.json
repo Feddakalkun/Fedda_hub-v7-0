@@ -108,7 +108,7 @@
   },
   "145": {
     "inputs": {
-      "shift": 3.1000000000000005,
+      "shift": 3.1,
       "model": [
         "149",
         0
@@ -133,7 +133,7 @@
   },
   "153": {
     "inputs": {
-      "prompt": "take the man and and the woman and have them kiss.",
+      "prompt": "",
       "clip": [
         "217",
         1
@@ -235,7 +235,7 @@
   },
   "175": {
     "inputs": {
-      "image": "55555.png"
+      "image": "example.png"
     },
     "class_type": "LoadImage",
     "_meta": {
@@ -366,7 +366,7 @@
   },
   "213": {
     "inputs": {
-      "image": "IMG_20230704_144149094_HDR (1).jpg"
+      "image": "example.png"
     },
     "class_type": "LoadImage",
     "_meta": {
@@ -459,7 +459,6 @@
   },
   "220": {
     "inputs": {
-      "text": "=== DOWNLOAD REPORT ===\nTotal files: 6\nSuccessful downloads: 1\nAlready existed: 5\nInterrupted: 0\nFailed: 0\nMax concurrent: 3\nSpeed limit: Unlimited\nResume enabled: True\nValidation enabled: False\nAuto-organize: False\n\nDetails:\n✓ qwen_2.5_vl_7b_fp8_scaled.safetensors: Already exists (8.74 GB)\n✓ qwen_image_vae.safetensors: Already exists (242.05 MB)\n✓ Qwen-Image-2512-Lightning-4steps-V1.0-bf16.safetensors: Already exists (810.25 MB)\n✓ Qwen-Image-2512-Lightning-8steps-V1.0-bf16.safetensors: Already exists (810.25 MB)\n✓ Qwen_Snofs_1_3.safetensors: Already exists (585.40 MB)\n✓ qwen_image_edit_2511_fp8_e4m3fn.safetensors: Downloaded successfully to diffusion_models/ (19.03 GB)",
       "anything": [
         "221",
         0
