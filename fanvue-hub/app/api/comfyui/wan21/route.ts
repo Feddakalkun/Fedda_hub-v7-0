@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
         }
 
         // Load the Wan 2.2 workflow
-        const workflowTemplate = JSON.parse(fs.readFileSync(path.join(process.cwd(), '../assets/workflows/Wan2.2_I2V.json'), 'utf-8'));
+        const workflowTemplate = JSON.parse(fs.readFileSync(path.join(process.cwd(), '../assets/workflows/wan-image-to-video.json'), 'utf-8'));
 
         try {
             // JSON already parsed above
