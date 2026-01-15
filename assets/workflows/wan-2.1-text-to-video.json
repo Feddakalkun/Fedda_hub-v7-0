@@ -17,165 +17,15 @@
   },
   "54": {
     "inputs": {
-      "shift": 8.000000000000002,
+      "shift": 8,
       "model": [
-        "59",
+        "292",
         0
       ]
     },
     "class_type": "ModelSamplingSD3",
     "_meta": {
       "title": "ModelSamplingSD3"
-    }
-  },
-  "59": {
-    "inputs": {
-      "PowerLoraLoaderHeaderWidget": {
-        "type": "PowerLoraLoaderHeaderWidget"
-      },
-      "lora_1": {
-        "on": true,
-        "lora": "wan\\lightx2v_I2V_14B_480p_cfg_step_distill_rank64_bf16.safetensors",
-        "strength": 1
-      },
-      "lora_2": {
-        "on": false,
-        "lora": "personal\\Froy_Aae_wan22\\Froy_Aae_wan22_high_noise.safetensors",
-        "strength": 1
-      },
-      "lora_3": {
-        "on": false,
-        "lora": "personal\\Wan22\\Sybian-Bouncing\\Sybian-Bouncing-two-e85-az420.safetensors",
-        "strength": 1
-      },
-      "lora_4": {
-        "on": false,
-        "lora": "personal\\Wan22\\Dreamlay\\DR34ML4Y_I2V_14B_HIGH.safetensors",
-        "strength": 1
-      },
-      "lora_5": {
-        "on": false,
-        "lora": "personal\\Wan22\\Dreamlay\\DR34ML4Y_T2V_14B_HIGH.safetensors",
-        "strength": 1
-      },
-      "lora_6": {
-        "on": false,
-        "lora": "personal\\Wan22\\r3v3rs3_c0wg1rl\\wan22.r3v3rs3_c0wg1rl-14b-High-t2v_e120.safetensors",
-        "strength": 1
-      },
-      "lora_7": {
-        "on": false,
-        "lora": "personal\\Lila_wan22\\Lila_wan22_high_noise.safetensors",
-        "strength": 1
-      },
-      "lora_8": {
-        "on": false,
-        "lora": "personal\\Wan22\\WanTwoFingers\\two-fingers-e210-az420.safetensors",
-        "strength": 1
-      },
-      "lora_9": {
-        "on": false,
-        "lora": "personal\\Wan22\\WanTwoFingers\\two-fingers-e210-az420.safetensors",
-        "strength": 1
-      },
-      "lora_10": {
-        "on": false,
-        "lora": "None",
-        "strength": 1
-      },
-      "lora_11": {
-        "on": false,
-        "lora": "None",
-        "strength": 1
-      },
-      "lora_12": {
-        "on": false,
-        "lora": "None",
-        "strength": 1
-      },
-      "lora_13": {
-        "on": false,
-        "lora": "None",
-        "strength": 1
-      },
-      "lora_14": {
-        "on": false,
-        "lora": "None",
-        "strength": 1
-      },
-      "lora_15": {
-        "on": false,
-        "lora": "None",
-        "strength": 1
-      },
-      "lora_16": {
-        "on": false,
-        "lora": "None",
-        "strength": 1
-      },
-      "lora_17": {
-        "on": false,
-        "lora": "None",
-        "strength": 1
-      },
-      "lora_18": {
-        "on": false,
-        "lora": "None",
-        "strength": 1
-      },
-      "lora_19": {
-        "on": false,
-        "lora": "None",
-        "strength": 1
-      },
-      "lora_20": {
-        "on": false,
-        "lora": "None",
-        "strength": 1
-      },
-      "lora_21": {
-        "on": false,
-        "lora": "None",
-        "strength": 1
-      },
-      "lora_22": {
-        "on": false,
-        "lora": "None",
-        "strength": 1
-      },
-      "lora_23": {
-        "on": false,
-        "lora": "None",
-        "strength": 1
-      },
-      "lora_24": {
-        "on": false,
-        "lora": "None",
-        "strength": 1
-      },
-      "lora_25": {
-        "on": false,
-        "lora": "None",
-        "strength": 1
-      },
-      "lora_26": {
-        "on": false,
-        "lora": "None",
-        "strength": 1
-      },
-      "\u2795 Add Lora": "",
-      "model": [
-        "209",
-        0
-      ],
-      "clip": [
-        "200",
-        0
-      ]
-    },
-    "class_type": "Power Lora Loader (rgthree)",
-    "_meta": {
-      "title": "Power Lora Loader (rgthree) High Pass"
     }
   },
   "177": {
@@ -256,146 +106,11 @@
       "title": "KSampler (Advanced) High Pass"
     }
   },
-  "181": {
-    "inputs": {
-      "PowerLoraLoaderHeaderWidget": {
-        "type": "PowerLoraLoaderHeaderWidget"
-      },
-      "lora_1": {
-        "on": true,
-        "lora": "wan\\Wan21_I2V_14B_lightx2v_cfg_step_distill_lora_rank64.safetensors",
-        "strength": 1.5
-      },
-      "lora_2": {
-        "on": false,
-        "lora": "personal\\Froy_Aae_wan22\\Froy_Aae_wan22_low_noise.safetensors",
-        "strength": 1
-      },
-      "lora_3": {
-        "on": false,
-        "lora": "personal\\Wan22\\Sybian-Bouncing\\Sybian-Bouncing-two-e85-az420.safetensors",
-        "strength": 1
-      },
-      "lora_4": {
-        "on": false,
-        "lora": "personal\\Wan22\\Dreamlay\\DR34ML4Y_I2V_14B_LOW.safetensors",
-        "strength": 1
-      },
-      "lora_5": {
-        "on": false,
-        "lora": "personal\\Wan22\\Dreamlay\\DR34ML4Y_T2V_14B_LOW.safetensors",
-        "strength": 1
-      },
-      "lora_6": {
-        "on": false,
-        "lora": "personal\\Wan22\\r3v3rs3_c0wg1rl\\wan22.r3v3rs3_c0wg1rl-14b-Low-t2v_e120.safetensors",
-        "strength": 1
-      },
-      "lora_7": {
-        "on": false,
-        "lora": "personal\\Lila_wan22\\Lila_wan22_low_noise.safetensors",
-        "strength": 1
-      },
-      "lora_8": {
-        "on": false,
-        "lora": "personal\\Wan22\\WanTwoFingers\\two-fingers-e210-az420.safetensors",
-        "strength": 1
-      },
-      "lora_9": {
-        "on": false,
-        "lora": "personal\\Wan22\\fingering\\fingering_i2v_e248.safetensors",
-        "strength": 1
-      },
-      "lora_10": {
-        "on": false,
-        "lora": "None",
-        "strength": 1
-      },
-      "lora_11": {
-        "on": false,
-        "lora": "None",
-        "strength": 1
-      },
-      "lora_12": {
-        "on": false,
-        "lora": "None",
-        "strength": 1
-      },
-      "lora_13": {
-        "on": false,
-        "lora": "None",
-        "strength": 1
-      },
-      "lora_14": {
-        "on": false,
-        "lora": "None",
-        "strength": 1
-      },
-      "lora_15": {
-        "on": false,
-        "lora": "None",
-        "strength": 1
-      },
-      "lora_16": {
-        "on": false,
-        "lora": "None",
-        "strength": 1
-      },
-      "lora_17": {
-        "on": false,
-        "lora": "None",
-        "strength": 1
-      },
-      "lora_18": {
-        "on": false,
-        "lora": "None",
-        "strength": 1
-      },
-      "lora_19": {
-        "on": false,
-        "lora": "None",
-        "strength": 1
-      },
-      "lora_20": {
-        "on": false,
-        "lora": "None",
-        "strength": 1
-      },
-      "lora_21": {
-        "on": false,
-        "lora": "None",
-        "strength": 1
-      },
-      "lora_22": {
-        "on": false,
-        "lora": "None",
-        "strength": 1
-      },
-      "lora_23": {
-        "on": false,
-        "lora": "None",
-        "strength": 1
-      },
-      "\u2795 Add Lora": "",
-      "model": [
-        "210",
-        0
-      ],
-      "clip": [
-        "200",
-        0
-      ]
-    },
-    "class_type": "Power Lora Loader (rgthree)",
-    "_meta": {
-      "title": "Power Lora Loader (rgthree) Low Pass"
-    }
-  },
   "182": {
     "inputs": {
-      "shift": 8.000000000000002,
+      "shift": 8,
       "model": [
-        "181",
+        "291",
         0
       ]
     },
@@ -427,12 +142,6 @@
   "201": {
     "inputs": {
       "text": "Enter your prompt here",
-      "speak_and_recognation": {
-        "__value__": [
-          false,
-          true
-        ]
-      },
       "clip": [
         "200",
         0
@@ -445,13 +154,7 @@
   },
   "202": {
     "inputs": {
-      "text": "\u8272\u8c03\u8273\u4e3d\uff0c\u8fc7\u66dd\uff0c\u9759\u6001\uff0c\u7ec6\u8282\u6a21\u7cca\u4e0d\u6e05\uff0c\u5b57\u5e55\uff0c\u98ce\u683c\uff0c\u4f5c\u54c1\uff0c\u753b\u4f5c\uff0c\u753b\u9762\uff0c\u9759\u6b62\uff0c\u6574\u4f53\u53d1\u7070\uff0c\u6700\u5dee\u8d28\u91cf\uff0c\u4f4e\u8d28\u91cf\uff0cJPEG\u538b\u7f29\u6b8b\u7559\uff0c\u4e11\u964b\u7684\uff0c\u6b8b\u7f3a\u7684\uff0c\u591a\u4f59\u7684\u624b\u6307\uff0c\u753b\u5f97\u4e0d\u597d\u7684\u624b\u90e8\uff0c\u753b\u5f97\u4e0d\u597d\u7684\u8138\u90e8\uff0c\u7578\u5f62\u7684\uff0c\u6bc1\u5bb9\u7684\uff0c\u5f62\u6001\u7578\u5f62\u7684\u80a2\u4f53\uff0c\u624b\u6307\u878d\u5408\uff0c\u9759\u6b62\u4e0d\u52a8\u7684\u753b\u9762\uff0c\u6742\u4e71\u7684\u80cc\u666f\uff0c\u4e09\u6761\u817f\uff0c\u80cc\u666f\u4eba\u5f88\u591a\uff0c\u5012\u7740\u8d70",
-      "speak_and_recognation": {
-        "__value__": [
-          false,
-          true
-        ]
-      },
+      "text": "色调艳丽，过曝，静态，细节模糊不清，字幕，风格，作品，画作，画面，静止，整体发灰，最差质量，低质量，JPEG压缩残留，丑陋的，残缺的，多余的手指，画得不好的手部，画得不好的脸部，畸形的，毁容的，形态畸形的肢体，手指融合，静止不动的画面，杂乱的背景，三条腿，背景人很多，倒着走",
       "clip": [
         "200",
         0
@@ -668,8 +371,8 @@
   },
   "234": {
     "inputs": {
-      "Xi": 5,
-      "Xf": 5,
+      "Xi": 20,
+      "Xf": 20,
       "isfloatX": 0
     },
     "class_type": "mxSlider",
@@ -680,12 +383,6 @@
   "235": {
     "inputs": {
       "expression": "a*16",
-      "speak_and_recognation": {
-        "__value__": [
-          false,
-          true
-        ]
-      },
       "a": [
         "234",
         0
@@ -693,7 +390,7 @@
     },
     "class_type": "MathExpression|pysssss",
     "_meta": {
-      "title": "Math Expression \ud83d\udc0d"
+      "title": "Math Expression 🐍"
     }
   },
   "236": {
@@ -769,8 +466,8 @@
   },
   "256": {
     "inputs": {
-      "Xi": 6,
-      "Xf": 6,
+      "Xi": 20,
+      "Xf": 20,
       "isfloatX": 0
     },
     "class_type": "mxSlider",
@@ -866,7 +563,6 @@
   },
   "289": {
     "inputs": {
-      "text": "Enter your prompt here",
       "anything": [
         "290",
         0
@@ -887,17 +583,51 @@
       "validate_files": false,
       "enable_notifications": true,
       "auto_organize": false,
-      "hf_token": "",
-      "speak_and_recognation": {
-        "__value__": [
-          false,
-          true
-        ]
-      }
+      "hf_token": ""
     },
     "class_type": "HuggingFaceDownloader",
     "_meta": {
-      "title": "\ud83e\udd17 HuggingFace Model Downloader Pro"
+      "title": "🤗 HuggingFace Model Downloader Pro"
+    }
+  },
+  "291": {
+    "inputs": {
+      "PowerLoraLoaderHeaderWidget": {
+        "type": "PowerLoraLoaderHeaderWidget"
+      },
+      "➕ Add Lora": "",
+      "model": [
+        "210",
+        0
+      ],
+      "clip": [
+        "200",
+        0
+      ]
+    },
+    "class_type": "Power Lora Loader (rgthree)",
+    "_meta": {
+      "title": "Power Lora Loader (rgthree) low pass"
+    }
+  },
+  "292": {
+    "inputs": {
+      "PowerLoraLoaderHeaderWidget": {
+        "type": "PowerLoraLoaderHeaderWidget"
+      },
+      "➕ Add Lora": "",
+      "model": [
+        "209",
+        0
+      ],
+      "clip": [
+        "200",
+        0
+      ]
+    },
+    "class_type": "Power Lora Loader (rgthree)",
+    "_meta": {
+      "title": "Power Lora Loader (rgthree) high pass"
     }
   }
 }
