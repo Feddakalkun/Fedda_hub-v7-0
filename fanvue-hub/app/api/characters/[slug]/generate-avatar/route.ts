@@ -27,41 +27,48 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
         const avatarPrompt = buildAvatarPrompt(character);
 
         // Update workflow with character-specific settings
-        workflowTemplate["33"].inputs.string = avatarPrompt; // Positive prompt
-        workflowTemplate["34"].inputs.string = "blurry, low quality, distorted face, bad anatomy"; // Negative
-        workflowTemplate["30"].inputs.width = 1024; // Square avatar
-        workflowTemplate["30"].inputs.height = 1024;
-        workflowTemplate["30"].inputs.aspect_ratio = "1:1";
+        // API format uses object keys for nodes
 
-        // FIX: Connect CLIP to the LoRA loader output (node 126, output 1)
-        // Previously it was connected directly to the CLIP loader (node 18), 
-        // which meant LoRAs weren't affecting the text conditioning.
-        workflowTemplate["6"].inputs.clip = ["126", 1];
-        workflowTemplate["7"].inputs.clip = ["126", 1];
+        // Positive prompt (node 171 - ImpactWildcardProcessor)
+        if (workflowTemplate["171"]?.inputs) {
+            workflowTemplate["171"].inputs.wildcard_text = avatarPrompt;
+            workflowTemplate["171"].inputs.populated_text = avatarPrompt;
+        }
+
+        // Negative prompt (node 34 - String Literal)
+        if (workflowTemplate["34"]?.inputs) {
+            workflowTemplate["34"].inputs.string = "blurry, low quality, distorted face, bad anatomy";
+        }
+
+        // Aspect Ratio (node 30) - Set to Square 1:1 for Avatars
+        if (workflowTemplate["30"]?.inputs) {
+            workflowTemplate["30"].inputs.width = 1024;
+            workflowTemplate["30"].inputs.height = 1024;
+            workflowTemplate["30"].inputs.aspect_ratio = "1:1";
+        }
 
         // Fix SaveImage path - use ComfyUI output folder
-        workflowTemplate["9"].inputs.filename_prefix = `avatars/${character.slug}`;
+        if (workflowTemplate["9"]?.inputs) {
+            workflowTemplate["9"].inputs.filename_prefix = `avatars/${character.slug}`;
+        }
 
-        // Add LoRA if specified
-        if (character.loraPath) {
-            // Power Lora Loader (rgthree) in the updated workflow uses the lora_1 structure
+        // Add LoRA if specified (Node 131 - Lora Loader Stack rgthree)
+        if (character.loraPath && workflowTemplate["131"]?.inputs) {
+            // Ensure path separators are correct for Windows
             const loraPath = character.loraPath.replace(/\//g, '\\');
+            console.log(`🎨 Applying LoRA via rgthree stack: ${loraPath}`);
 
-            console.log(`🎨 Applying LoRA via lora_1: ${loraPath}`);
+            // Set Slot 1
+            workflowTemplate["131"].inputs.lora_01 = loraPath;
+            workflowTemplate["131"].inputs.strength_01 = 1.0;
 
-            const node126 = workflowTemplate["126"];
-
-            node126.inputs.lora_1 = {
-                on: true,
-                lora: loraPath,
-                strength: 1.0
-            };
-
-            // Clear the old "Add Lora" key to avoid confusion
-            const addLoraKey = Object.keys(node126.inputs).find(k => k.includes("Add Lora"));
-            if (addLoraKey) {
-                node126.inputs[addLoraKey] = "";
-            }
+            // Clear other slots to be safe
+            workflowTemplate["131"].inputs.lora_02 = "None";
+            workflowTemplate["131"].inputs.strength_02 = 0;
+            workflowTemplate["131"].inputs.lora_03 = "None";
+            workflowTemplate["131"].inputs.strength_03 = 0;
+            workflowTemplate["131"].inputs.lora_04 = "None";
+            workflowTemplate["131"].inputs.strength_04 = 0;
         }
 
         // Random seed

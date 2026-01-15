@@ -108,6 +108,7 @@ exit /b
 set "BASE_DIR=%~dp0"
 if "%BASE_DIR:~-1%"=="\" set "BASE_DIR=%BASE_DIR:~0,-1%"
 set "COMFYUI_DIR=%BASE_DIR%\ComfyUI"
+if not exist "%COMFYUI_DIR%" set "COMFYUI_DIR=ComfyUI"
 set "PYTHON=%BASE_DIR%\python_embeded\python.exe"
 set "PATH=%BASE_DIR%\python_embeded;%BASE_DIR%\python_embeded\Scripts;%BASE_DIR%\git\cmd;%BASE_DIR%\node_embeded;%PATH%"
 
