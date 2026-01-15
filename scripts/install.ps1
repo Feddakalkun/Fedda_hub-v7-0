@@ -330,6 +330,12 @@ if ($LASTEXITCODE -ne 0) {
     Run-Pip "install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu"
 }
 
+
+Write-Log "Installing Windows-compatible Triton (required for SageAttention)..."
+Run-Pip "install https://github.com/woct0rdho/triton-windows/releases/download/v3.1.0-windows.post5/triton-3.1.0-cp311-cp311-win_amd64.whl"
+Write-Log "Installing SageAttention..."
+Run-Pip "install sageattention==1.0.6"
+
 Write-Log "Installing ComfyUI requirements..."
 $ReqFile = Join-Path $ComfyDir "requirements.txt"
 Run-Pip "install -r $ReqFile"

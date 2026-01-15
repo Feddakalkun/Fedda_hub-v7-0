@@ -1,0 +1,903 @@
+{
+  "8": {
+    "inputs": {
+      "samples": [
+        "177",
+        0
+      ],
+      "vae": [
+        "199",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "54": {
+    "inputs": {
+      "shift": 8.000000000000002,
+      "model": [
+        "59",
+        0
+      ]
+    },
+    "class_type": "ModelSamplingSD3",
+    "_meta": {
+      "title": "ModelSamplingSD3"
+    }
+  },
+  "59": {
+    "inputs": {
+      "PowerLoraLoaderHeaderWidget": {
+        "type": "PowerLoraLoaderHeaderWidget"
+      },
+      "lora_1": {
+        "on": true,
+        "lora": "wan\\lightx2v_I2V_14B_480p_cfg_step_distill_rank64_bf16.safetensors",
+        "strength": 1
+      },
+      "lora_2": {
+        "on": false,
+        "lora": "personal\\Froy_Aae_wan22\\Froy_Aae_wan22_high_noise.safetensors",
+        "strength": 1
+      },
+      "lora_3": {
+        "on": false,
+        "lora": "personal\\Wan22\\Sybian-Bouncing\\Sybian-Bouncing-two-e85-az420.safetensors",
+        "strength": 1
+      },
+      "lora_4": {
+        "on": false,
+        "lora": "personal\\Wan22\\Dreamlay\\DR34ML4Y_I2V_14B_HIGH.safetensors",
+        "strength": 1
+      },
+      "lora_5": {
+        "on": false,
+        "lora": "personal\\Wan22\\Dreamlay\\DR34ML4Y_T2V_14B_HIGH.safetensors",
+        "strength": 1
+      },
+      "lora_6": {
+        "on": false,
+        "lora": "personal\\Wan22\\r3v3rs3_c0wg1rl\\wan22.r3v3rs3_c0wg1rl-14b-High-t2v_e120.safetensors",
+        "strength": 1
+      },
+      "lora_7": {
+        "on": false,
+        "lora": "personal\\Lila_wan22\\Lila_wan22_high_noise.safetensors",
+        "strength": 1
+      },
+      "lora_8": {
+        "on": false,
+        "lora": "personal\\Wan22\\WanTwoFingers\\two-fingers-e210-az420.safetensors",
+        "strength": 1
+      },
+      "lora_9": {
+        "on": false,
+        "lora": "personal\\Wan22\\WanTwoFingers\\two-fingers-e210-az420.safetensors",
+        "strength": 1
+      },
+      "lora_10": {
+        "on": false,
+        "lora": "personal\\Wan22\\fingering\\fingering_i2v_e248.safetensors",
+        "strength": 1
+      },
+      "lora_11": {
+        "on": false,
+        "lora": "personal\\Wan22\\Asshole\\WAN2.2 - Asshole - HIGH - e18.safetensors",
+        "strength": 1
+      },
+      "lora_12": {
+        "on": false,
+        "lora": "personal\\Wan22\\anal_fisting\\wa22-4n4lfi5tin6-93epoc-high-k3nk.safetensors",
+        "strength": 1
+      },
+      "lora_13": {
+        "on": false,
+        "lora": "personal\\meg\\meg_wan22_000001600_high_noise.safetensors",
+        "strength": 1
+      },
+      "lora_14": {
+        "on": false,
+        "lora": "personal\\Cathrine_Vale_wan22\\NEW_Cathrine_Vale_wan22_high_noise.safetensors",
+        "strength": 1
+      },
+      "lora_15": {
+        "on": false,
+        "lora": "personal\\Wan22\\WanTwoFingers\\two-fingers-e210-az420.safetensors",
+        "strength": 1
+      },
+      "lora_16": {
+        "on": false,
+        "lora": "personal\\Wan22\\PENISLORA\\PENISLORA_22_HIGH_e149.safetensors",
+        "strength": 1
+      },
+      "lora_17": {
+        "on": false,
+        "lora": "personal\\Wan22\\PENISLORA\\PENISLORA_22_i2v_HIGH_e320.safetensors",
+        "strength": 1
+      },
+      "lora_18": {
+        "on": false,
+        "lora": "personal\\Wan22\\wan2.2-i2v-oral-insertion-v1.0\\wan2.2-i2v-high-oral-insertion-v1.0.safetensors",
+        "strength": 1
+      },
+      "lora_19": {
+        "on": false,
+        "lora": "personal\\Wan22\\NSFW\\NSFW-22-H-e8.safetensors",
+        "strength": 1
+      },
+      "lora_20": {
+        "on": false,
+        "lora": "personal\\Iris_wan22\\Iris_wan22_high_noise.safetensors",
+        "strength": 1
+      },
+      "lora_21": {
+        "on": true,
+        "lora": "personal\\Ane_ommundsen_wan22\\ane_ommundsen_wan22_high_noise.safetensors",
+        "strength": 1
+      },
+      "lora_22": {
+        "on": true,
+        "lora": "Wan2.2-T2V-HIGH-4steps-lora-rank64-Seko-V1.safetensors",
+        "strength": 1
+      },
+      "lora_23": {
+        "on": false,
+        "lora": "personal\\Wan22\\NSFW\\NSFW-22-H-e8.safetensors",
+        "strength": 1
+      },
+      "lora_24": {
+        "on": false,
+        "lora": "personal\\Wan22\\sex-fov-slider\\wan2.2-i2v-high-sex-fov-slider-v1.0.safetensors",
+        "strength": 1
+      },
+      "lora_25": {
+        "on": false,
+        "lora": "personal\\Wan22\\anal_fisting\\wa22-4n4lfi5tin6-93epoc-high-k3nk.safetensors",
+        "strength": 1
+      },
+      "lora_26": {
+        "on": true,
+        "lora": "personal\\Wan22\\wan2.2-i2v-oral-insertion-v1.0\\wan2.2-i2v-high-oral-insertion-v1.0.safetensors",
+        "strength": 1
+      },
+      "➕ Add Lora": "",
+      "model": [
+        "209",
+        0
+      ],
+      "clip": [
+        "200",
+        0
+      ]
+    },
+    "class_type": "Power Lora Loader (rgthree)",
+    "_meta": {
+      "title": "Power Lora Loader (rgthree) High Pass"
+    }
+  },
+  "177": {
+    "inputs": {
+      "add_noise": "disable",
+      "noise_seed": 256562052040433,
+      "steps": [
+        "256",
+        0
+      ],
+      "cfg": 1,
+      "sampler_name": "lcm",
+      "scheduler": "simple",
+      "start_at_step": [
+        "221",
+        0
+      ],
+      "end_at_step": 10000,
+      "return_with_leftover_noise": "disable",
+      "model": [
+        "182",
+        0
+      ],
+      "positive": [
+        "237",
+        0
+      ],
+      "negative": [
+        "238",
+        0
+      ],
+      "latent_image": [
+        "178",
+        0
+      ]
+    },
+    "class_type": "KSamplerAdvanced",
+    "_meta": {
+      "title": "KSampler (Advanced) Low Pass"
+    }
+  },
+  "178": {
+    "inputs": {
+      "add_noise": "enable",
+      "noise_seed": 549534676479096,
+      "steps": [
+        "256",
+        0
+      ],
+      "cfg": 1,
+      "sampler_name": "lcm",
+      "scheduler": "simple",
+      "start_at_step": 0,
+      "end_at_step": [
+        "221",
+        0
+      ],
+      "return_with_leftover_noise": "enable",
+      "model": [
+        "54",
+        0
+      ],
+      "positive": [
+        "237",
+        0
+      ],
+      "negative": [
+        "238",
+        0
+      ],
+      "latent_image": [
+        "239",
+        0
+      ]
+    },
+    "class_type": "KSamplerAdvanced",
+    "_meta": {
+      "title": "KSampler (Advanced) High Pass"
+    }
+  },
+  "181": {
+    "inputs": {
+      "PowerLoraLoaderHeaderWidget": {
+        "type": "PowerLoraLoaderHeaderWidget"
+      },
+      "lora_1": {
+        "on": true,
+        "lora": "wan\\Wan21_I2V_14B_lightx2v_cfg_step_distill_lora_rank64.safetensors",
+        "strength": 1.5
+      },
+      "lora_2": {
+        "on": false,
+        "lora": "personal\\Froy_Aae_wan22\\Froy_Aae_wan22_low_noise.safetensors",
+        "strength": 1
+      },
+      "lora_3": {
+        "on": false,
+        "lora": "personal\\Wan22\\Sybian-Bouncing\\Sybian-Bouncing-two-e85-az420.safetensors",
+        "strength": 1
+      },
+      "lora_4": {
+        "on": false,
+        "lora": "personal\\Wan22\\Dreamlay\\DR34ML4Y_I2V_14B_LOW.safetensors",
+        "strength": 1
+      },
+      "lora_5": {
+        "on": false,
+        "lora": "personal\\Wan22\\Dreamlay\\DR34ML4Y_T2V_14B_LOW.safetensors",
+        "strength": 1
+      },
+      "lora_6": {
+        "on": false,
+        "lora": "personal\\Wan22\\r3v3rs3_c0wg1rl\\wan22.r3v3rs3_c0wg1rl-14b-Low-t2v_e120.safetensors",
+        "strength": 1
+      },
+      "lora_7": {
+        "on": false,
+        "lora": "personal\\Lila_wan22\\Lila_wan22_low_noise.safetensors",
+        "strength": 1
+      },
+      "lora_8": {
+        "on": false,
+        "lora": "personal\\Wan22\\WanTwoFingers\\two-fingers-e210-az420.safetensors",
+        "strength": 1
+      },
+      "lora_9": {
+        "on": false,
+        "lora": "personal\\Wan22\\fingering\\fingering_i2v_e248.safetensors",
+        "strength": 1
+      },
+      "lora_10": {
+        "on": false,
+        "lora": "personal\\Wan22\\Asshole\\WAN2.2 - Asshole - LOW - e22.safetensors",
+        "strength": 1
+      },
+      "lora_11": {
+        "on": false,
+        "lora": "personal\\Wan22\\anal_fisting\\wa22-4n4lfi5tin6-40epoc-low-k3nk.safetensors",
+        "strength": 1
+      },
+      "lora_12": {
+        "on": false,
+        "lora": "personal\\meg\\2\\Meg_wan22_2_low_noise.safetensors",
+        "strength": 1
+      },
+      "lora_13": {
+        "on": false,
+        "lora": "personal\\Cathrine_Vale_wan22\\NEW_Cathrine_Vale_wan22_low_noise.safetensors",
+        "strength": 1
+      },
+      "lora_14": {
+        "on": false,
+        "lora": "personal\\Wan22\\PENISLORA\\PENISLORA_22_i2v_LOW_e496.safetensors",
+        "strength": 1
+      },
+      "lora_15": {
+        "on": false,
+        "lora": "personal\\Wan22\\wan2.2-i2v-oral-insertion-v1.0\\wan2.2-i2v-low-oral-insertion-v1.0.safetensors",
+        "strength": 1
+      },
+      "lora_16": {
+        "on": false,
+        "lora": "personal\\Wan22\\NSFW\\NSFW-22-L-e8.safetensors",
+        "strength": 1
+      },
+      "lora_17": {
+        "on": false,
+        "lora": "personal\\Iris_wan22\\Iris_wan22_low_noise.safetensors",
+        "strength": 1
+      },
+      "lora_18": {
+        "on": true,
+        "lora": "personal\\Ane_ommundsen_wan22\\ane_ommundsen_wan22_low_noise.safetensors",
+        "strength": 1
+      },
+      "lora_19": {
+        "on": false,
+        "lora": "Wan2.2-T2V-LOW-4steps-lora-rank64-Seko-V1.safetensors",
+        "strength": 1
+      },
+      "lora_20": {
+        "on": false,
+        "lora": "personal\\Wan22\\NSFW\\NSFW-22-L-e8.safetensors",
+        "strength": 1
+      },
+      "lora_21": {
+        "on": false,
+        "lora": "personal\\Wan22\\sex-fov-slider\\wan2.2-i2v-low-sex-fov-slider-v1.0.safetensors",
+        "strength": 1
+      },
+      "lora_22": {
+        "on": false,
+        "lora": "personal\\Wan22\\anal_fisting\\wa22-4n4lfi5tin6-40epoc-low-k3nk.safetensors",
+        "strength": 1
+      },
+      "lora_23": {
+        "on": true,
+        "lora": "personal\\Wan22\\wan2.2-i2v-oral-insertion-v1.0\\wan2.2-i2v-low-oral-insertion-v1.0.safetensors",
+        "strength": 1
+      },
+      "➕ Add Lora": "",
+      "model": [
+        "210",
+        0
+      ],
+      "clip": [
+        "200",
+        0
+      ]
+    },
+    "class_type": "Power Lora Loader (rgthree)",
+    "_meta": {
+      "title": "Power Lora Loader (rgthree) Low Pass"
+    }
+  },
+  "182": {
+    "inputs": {
+      "shift": 8.000000000000002,
+      "model": [
+        "181",
+        0
+      ]
+    },
+    "class_type": "ModelSamplingSD3",
+    "_meta": {
+      "title": "ModelSamplingSD3"
+    }
+  },
+  "199": {
+    "inputs": {
+      "vae_name": "wan_2.1_vae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "Load VAE"
+    }
+  },
+  "200": {
+    "inputs": {
+      "clip_name": "umt5_xxl_fp8_e4m3fn_scaled.safetensors",
+      "type": "wan",
+      "device": "default"
+    },
+    "class_type": "CLIPLoader",
+    "_meta": {
+      "title": "Load CLIP"
+    }
+  },
+  "201": {
+    "inputs": {
+      "text": "A dark skinned man appears and she sucks his large penis greedy. In the dim light of a neon-streaked alley, a young teenage woman, barely dressed in a worn Hello Kitty tank top, leans against a cold brick wall. Her breath is visible in the chilled air, her nipples hard against the flimsy fabric. She's not alone; a dark-skinned man, tall and imposing, approaches her. His eyes, hungry but guarded, meet hers. The camera tracks in slowly, capturing the tension between them, the silent negotiation. The woman's gaze flicks downwards, taking in his evident arousal straining against his jeans. The alley is bathed in the harsh, clinical light of a nearby security lamp, casting long shadows that seem to whisper secrets.\n\n",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "200",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Positive Prompt)"
+    }
+  },
+  "202": {
+    "inputs": {
+      "text": "色调艳丽，过曝，静态，细节模糊不清，字幕，风格，作品，画作，画面，静止，整体发灰，最差质量，低质量，JPEG压缩残留，丑陋的，残缺的，多余的手指，画得不好的手部，画得不好的脸部，畸形的，毁容的，形态畸形的肢体，手指融合，静止不动的画面，杂乱的背景，三条腿，背景人很多，倒着走",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "200",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Negative Prompt)"
+    }
+  },
+  "204": {
+    "inputs": {
+      "ckpt_name": "rife49.pth",
+      "clear_cache_after_n_frames": 16,
+      "multiplier": 4,
+      "fast_mode": false,
+      "ensemble": true,
+      "scale_factor": 1,
+      "frames": [
+        "206",
+        0
+      ]
+    },
+    "class_type": "RIFE VFI",
+    "_meta": {
+      "title": "RIFE VFI (recommend rife47 and rife49)"
+    }
+  },
+  "205": {
+    "inputs": {
+      "model_name": "RealESRGAN_x2.pth"
+    },
+    "class_type": "UpscaleModelLoader",
+    "_meta": {
+      "title": "Load Upscale Model"
+    }
+  },
+  "206": {
+    "inputs": {
+      "upscale_model": [
+        "205",
+        0
+      ],
+      "image": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "ImageUpscaleWithModel",
+    "_meta": {
+      "title": "Upscale Image (using Model)"
+    }
+  },
+  "207": {
+    "inputs": {
+      "frame_rate": 16,
+      "loop_count": 0,
+      "filename_prefix": "wan2/upscaled/v2v",
+      "format": "video/h264-mp4",
+      "pix_fmt": "yuv420p",
+      "crf": 10,
+      "save_metadata": true,
+      "trim_to_audio": false,
+      "pingpong": false,
+      "save_output": false,
+      "images": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "VHS_VideoCombine",
+    "_meta": {
+      "title": "Video Combine preview video 16 fps"
+    }
+  },
+  "208": {
+    "inputs": {
+      "frame_rate": 60,
+      "loop_count": 0,
+      "filename_prefix": "wan/wan22",
+      "format": "video/h264-mp4",
+      "pix_fmt": "yuv420p",
+      "crf": 19,
+      "save_metadata": false,
+      "trim_to_audio": false,
+      "pingpong": false,
+      "save_output": true,
+      "images": [
+        "204",
+        0
+      ]
+    },
+    "class_type": "VHS_VideoCombine",
+    "_meta": {
+      "title": "Video Combine  final video 60 fps"
+    }
+  },
+  "209": {
+    "inputs": {
+      "model": [
+        "232",
+        0
+      ]
+    },
+    "class_type": "wanBlockSwap",
+    "_meta": {
+      "title": "WanVideoBlockSwap High Pass"
+    }
+  },
+  "210": {
+    "inputs": {
+      "model": [
+        "233",
+        0
+      ]
+    },
+    "class_type": "wanBlockSwap",
+    "_meta": {
+      "title": "WanVideoBlockSwap Low Pass"
+    }
+  },
+  "215": {
+    "inputs": {
+      "images": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "FinalFrameSelector",
+    "_meta": {
+      "title": "Final Frame Selector"
+    }
+  },
+  "216": {
+    "inputs": {
+      "filename_prefix": "wan/wan22_lastframe",
+      "images": [
+        "215",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save last frame"
+    }
+  },
+  "219": {
+    "inputs": {
+      "a": [
+        "256",
+        0
+      ],
+      "b": 2
+    },
+    "class_type": "JWIntegerDiv",
+    "_meta": {
+      "title": "Integer Divide"
+    }
+  },
+  "221": {
+    "inputs": {
+      "value": [
+        "219",
+        0
+      ],
+      "mode": "round"
+    },
+    "class_type": "JWFloatToInteger",
+    "_meta": {
+      "title": "Float to Integer"
+    }
+  },
+  "230": {
+    "inputs": {
+      "unet_name": "Wan2.2-T2V-A14B-HighNoise-Q8_0.gguf"
+    },
+    "class_type": "UnetLoaderGGUF",
+    "_meta": {
+      "title": "Unet Loader (GGUF)"
+    }
+  },
+  "231": {
+    "inputs": {
+      "unet_name": "Wan2.2-T2V-A14B-LowNoise-Q8_0.gguf"
+    },
+    "class_type": "UnetLoaderGGUF",
+    "_meta": {
+      "title": "Unet Loader (GGUF)"
+    }
+  },
+  "232": {
+    "inputs": {
+      "any_01": [
+        "273",
+        0
+      ]
+    },
+    "class_type": "Any Switch (rgthree)",
+    "_meta": {
+      "title": "Any Switch (rgthree)"
+    }
+  },
+  "233": {
+    "inputs": {
+      "any_01": [
+        "274",
+        0
+      ]
+    },
+    "class_type": "Any Switch (rgthree)",
+    "_meta": {
+      "title": "Any Switch (rgthree)"
+    }
+  },
+  "234": {
+    "inputs": {
+      "Xi": 5,
+      "Xf": 5,
+      "isfloatX": 0
+    },
+    "class_type": "mxSlider",
+    "_meta": {
+      "title": "clip lenght ( in seconds )"
+    }
+  },
+  "235": {
+    "inputs": {
+      "expression": "a*16",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "a": [
+        "234",
+        0
+      ]
+    },
+    "class_type": "MathExpression|pysssss",
+    "_meta": {
+      "title": "Math Expression 🐍"
+    }
+  },
+  "236": {
+    "inputs": {
+      "width": 480,
+      "height": 720,
+      "length": [
+        "235",
+        0
+      ],
+      "batch_size": 1
+    },
+    "class_type": "EmptyHunyuanLatentVideo",
+    "_meta": {
+      "title": "Empty Latent Video"
+    }
+  },
+  "237": {
+    "inputs": {
+      "any_01": [
+        "255",
+        0
+      ],
+      "any_02": [
+        "255",
+        0
+      ]
+    },
+    "class_type": "Any Switch (rgthree)",
+    "_meta": {
+      "title": "pos"
+    }
+  },
+  "238": {
+    "inputs": {
+      "any_01": [
+        "202",
+        0
+      ],
+      "any_02": [
+        "202",
+        0
+      ]
+    },
+    "class_type": "Any Switch (rgthree)",
+    "_meta": {
+      "title": "neg"
+    }
+  },
+  "239": {
+    "inputs": {
+      "any_02": [
+        "236",
+        0
+      ]
+    },
+    "class_type": "Any Switch (rgthree)",
+    "_meta": {
+      "title": "latent"
+    }
+  },
+  "255": {
+    "inputs": {
+      "any_01": [
+        "201",
+        0
+      ]
+    },
+    "class_type": "Any Switch (rgthree)",
+    "_meta": {
+      "title": "pos"
+    }
+  },
+  "256": {
+    "inputs": {
+      "Xi": 6,
+      "Xf": 6,
+      "isfloatX": 0
+    },
+    "class_type": "mxSlider",
+    "_meta": {
+      "title": "Generation Steps"
+    }
+  },
+  "269": {
+    "inputs": {
+      "enable_fp16_accumulation": true,
+      "model": [
+        "271",
+        0
+      ]
+    },
+    "class_type": "ModelPatchTorchSettings",
+    "_meta": {
+      "title": "Model Patch Torch Settings"
+    }
+  },
+  "270": {
+    "inputs": {
+      "enable_fp16_accumulation": true,
+      "model": [
+        "272",
+        0
+      ]
+    },
+    "class_type": "ModelPatchTorchSettings",
+    "_meta": {
+      "title": "Model Patch Torch Settings"
+    }
+  },
+  "271": {
+    "inputs": {
+      "sage_attention": "sageattn_qk_int8_pv_fp16_triton",
+      "allow_compile": false,
+      "model": [
+        "230",
+        0
+      ]
+    },
+    "class_type": "PathchSageAttentionKJ",
+    "_meta": {
+      "title": "Patch Sage Attention KJ"
+    }
+  },
+  "272": {
+    "inputs": {
+      "sage_attention": "sageattn_qk_int8_pv_fp16_triton",
+      "allow_compile": false,
+      "model": [
+        "231",
+        0
+      ]
+    },
+    "class_type": "PathchSageAttentionKJ",
+    "_meta": {
+      "title": "Patch Sage Attention KJ"
+    }
+  },
+  "273": {
+    "inputs": {
+      "any_01": [
+        "230",
+        0
+      ],
+      "any_02": [
+        "269",
+        0
+      ]
+    },
+    "class_type": "Any Switch (rgthree)",
+    "_meta": {
+      "title": "Any Switch (rgthree)"
+    }
+  },
+  "274": {
+    "inputs": {
+      "any_01": [
+        "231",
+        0
+      ],
+      "any_02": [
+        "270",
+        0
+      ]
+    },
+    "class_type": "Any Switch (rgthree)",
+    "_meta": {
+      "title": "Any Switch (rgthree)"
+    }
+  },
+  "289": {
+    "inputs": {
+      "text": "=== DOWNLOAD REPORT ===\nTotal files: 4\nSuccessful downloads: 0\nAlready existed: 3\nInterrupted: 0\nFailed: 1\nMax concurrent: 3\nSpeed limit: Unlimited\nResume enabled: True\nValidation enabled: False\nAuto-organize: False\n\nDetails:\n✓ z_image_turbo_bf16.safetensors: Already exists (11.46 GB)\n✓ qwen_3_4b.safetensors: Already exists (7.49 GB)\n✓ z-image-vae.safetensors: Already exists (319.77 MB)\n✗ qwen2.5-7b-instruct-q4_k_m.gguf: Download failed - 404 Client Error: Not Found for url: https://huggingface.co/Qwen/Qwen2.5-7B-Instruct-GGUF/resolve/main/qwen2.5-7b-instruct-q4_k_m.gguf",
+      "anything": [
+        "290",
+        0
+      ]
+    },
+    "class_type": "easy showAnything",
+    "_meta": {
+      "title": "Show Any"
+    }
+  },
+  "290": {
+    "inputs": {
+      "download_links": "https://huggingface.co/bullerwins/Wan2.2-T2V-A14B-GGUF/resolve/main/wan2.2_t2v_high_noise_14B_Q4_K_M.gguf?download=true unet\nhttps://huggingface.co/bullerwins/Wan2.2-T2V-A14B-GGUF/resolve/main/wan2.2_t2v_low_noise_14B_Q4_K_M.gguf?download=true unet\nhttps://huggingface.co/dtarnow/UPscaler/resolve/main/RealESRGAN_x2plus.pth upscale_models",
+      "auto_download": true,
+      "max_concurrent_downloads": 3,
+      "max_download_speed_mbps": 0,
+      "enable_resume": true,
+      "validate_files": false,
+      "enable_notifications": true,
+      "auto_organize": false,
+      "hf_token": "",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "HuggingFaceDownloader",
+    "_meta": {
+      "title": "🤗 HuggingFace Model Downloader Pro"
+    }
+  }
+}
