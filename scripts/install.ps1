@@ -51,32 +51,20 @@ function Download-File {
         
         $success = $false
         
-        # Try BITS first (faster for large files)
+
+        $success = $false
+        
+        # PRIMARY METHOD: Curl (Fastest)
         try {
-            Import-Module BitsTransfer -ErrorAction SilentlyContinue
-            if (Get-Command Start-BitsTransfer -ErrorAction SilentlyContinue) {
-                Write-Log "Using BITS transfer..."
-                Start-BitsTransfer -Source $Url -Destination $Dest -Description "Downloading $(Split-Path $Dest -Leaf)" -DisplayName "Fanvue Hub Installer" -ErrorAction Stop
+            & curl.exe -L -o $Dest $Url --progress-bar --fail --retry 3 --retry-delay 2
+            if ($LASTEXITCODE -eq 0) {
                 $success = $true
             }
         }
         catch {
-            Write-Log "BITS transfer failed: $($_.Exception.Message)"
-            Write-Log "Falling back to curl..."
+            Write-Log "Curl failed: $($_.Exception.Message)"
         }
-        
-        # Fallback to curl if BITS failed or is unavailable
-        if (-not $success) {
-            try {
-                & curl.exe -L -o $Dest $Url --progress-bar --fail --retry 3 --retry-delay 2
-                if ($LASTEXITCODE -eq 0) {
-                    $success = $true
-                }
-            }
-            catch {
-                Write-Log "Curl failed: $($_.Exception.Message)"
-            }
-        }
+
         
         # Final fallback to Invoke-WebRequest
         if (-not $success) {

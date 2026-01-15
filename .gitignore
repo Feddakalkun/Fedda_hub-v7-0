@@ -35,3 +35,5 @@ Instructions/
 *.exe
 *.msi
 *.code-workspace
+
+unused_workflows_backup/

@@ -272,13 +272,13 @@
   },
   "131": {
     "inputs": {
-      "lora_01": "Froy_zimage\\sara_zimage.safetensors",
+      "lora_01": "character01\\character01_zimage.safetensors",
       "strength_01": 0,
-      "lora_02": "personal\\ZIMAGE\\Aurora_z-image\\aurora_zimage.safetensors",
+      "lora_02": "character02\\character02_zimage.safetensors",
       "strength_02": 0,
-      "lora_03": "personal\\ZIMAGE\\Thale_prix_zimage\\Thale_prix_zimage.safetensors",
+      "lora_03": "character03\\character03_zimage.safetensors",
       "strength_03": 1,
-      "lora_04": "personal\\ZIMAGE\\ZImage_CockShock.safetensors",
+      "lora_04": "action_loras\\action_example.safetensors",
       "strength_04": 0,
       "model": [
         "16",
@@ -296,9 +296,9 @@
   },
   "132": {
     "inputs": {
-      "lora_01": "personal\\ZIMAGE\\Aurora_z-image\\aurora_zimage.safetensors",
+      "lora_01": "character02\\character02_zimage.safetensors",
       "strength_01": 1.1,
-      "lora_02": "personal\\sara_zimage\\Sara_zimage1.safetensors",
+      "lora_02": "character01\\character01_zimage.safetensors",
       "strength_02": 0,
       "lora_03": "None",
       "strength_03": 1,

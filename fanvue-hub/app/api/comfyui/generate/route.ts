@@ -51,7 +51,7 @@ export async function POST(request: NextRequest) {
         }
 
         // Load the API-format workflow from assets folder
-        const workflowPath = path.join(process.cwd(), '../assets/workflows/z-image-new1.json');
+        const workflowPath = path.join(process.cwd(), '../assets/workflows/Flux_ImageGen.json');
         let workflowTemplate: any;
 
         try {

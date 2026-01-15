@@ -20,7 +20,7 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
         console.log(`🎭 Character loaded: ${character.name}, LoRA Path: "${character.loraPath}"`);
 
         // Load Z-IMAGE workflow
-        const workflowPath = path.join(process.cwd(), '../assets/workflows/Z-IMAGE-new-api.json');
+        const workflowPath = path.join(process.cwd(), '../assets/workflows/Flux_ImageGen.json');
         const workflowTemplate = JSON.parse(fs.readFileSync(workflowPath, 'utf-8'));
 
         // Build avatar prompt
